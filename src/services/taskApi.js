@@ -12,7 +12,22 @@ export const addTaskApi = async (title) => {
   const res = await fetch("/db/tasks", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(prepareUserTask(title)),
+    body: JSON.stringify({ title }),
   });
   return res.json();
+};
+export const deleteTaskApi = async (id) => {
+  const res = await fetch(`/db/tasks/${id}`, {
+    method: "DELETE",
+  });
+  return { id };
+};
+
+export const updateTaskApi = async (id, title) => {
+  const res = await fetch(`/db/tasks/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title }),
+  });
+  return { id, title };
 };

@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-import { addTask } from "../features/taskSlice";
-import { prepareUserTask } from "../../services/taskApi";
+// import { addTask } from "../features/taskSlice";
+import { createTask } from "../features/taskSlice";
+// import { prepareUserTask } from "../../services/taskApi";
 
 export function AddTaskForm() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export function AddTaskForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(addTask(prepareUserTask(userTask)));
+        dispatch(createTask(userTask));
         setuserTask("");
       }}
       className="mt-4">

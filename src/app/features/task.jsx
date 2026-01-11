@@ -1,15 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeTask, toggleEditMode, updateTask } from "./taskSlice";
+import { toggleEditMode, updateDoneTask } from "./taskSlice";
 import { Header } from "../layout/header";
 import { AddTaskForm } from "../layout/addTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
+import { deleteTask } from "./taskSlice";
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
   curTasks = curTasks.slice().sort((a, b) => b.id - a.id);
 
-  console.log(curTasks);
-  
 
   const dispatch = useDispatch();
   return (
@@ -29,9 +28,10 @@ export default function Task() {
                     type="checkbox"
                     onChange={(e) =>
                       dispatch(
-                        updateTask({ id: task.id, isDone: e.target.checked })
+                        updateDoneTask({ id: task.id, isDone: e.target.checked })
                       )
                     }
+                    checked={task.done}
                   />
                   {!task.editMode ? (
                     <li
@@ -49,7 +49,7 @@ export default function Task() {
                   )}
                 </div>
                 <button
-                  onClick={() => dispatch(removeTask(task.id))}
+                  onClick={() => dispatch(deleteTask(task.id))}
                   className="bg-red-700  rounded px-4 py-2 font-semibold cursor-pointer hover:bg-red-600">
                   Remove
                 </button>
