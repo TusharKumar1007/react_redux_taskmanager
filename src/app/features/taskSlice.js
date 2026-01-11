@@ -1,7 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchTaskApi, addTaskApi } from "../../services/taskApi";
+
+export const getTasks = createAsyncThunk(
+  "tasks/getTasks",
+  async () => await fetchTaskApi()
+);
+export const createTask = createAsyncThunk(
+  "tasks/createTask",
+  async (title) => await addTaskApi(title)
+);
 
 const taskSlice = createSlice({
-  name: "task",
+  name: "tasks",
   initialState: {
     tasks: [],
   },
@@ -31,6 +41,15 @@ const taskSlice = createSlice({
         curTask.editMode = false;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getTasks.fulfilled, (state, action) => {
+        state.tasks = action.payload;
+      })
+      .addCase(createTask.fulfilled, (state, action) => {
+        state.tasks.push(action.payload);
+      });
   },
 });
 

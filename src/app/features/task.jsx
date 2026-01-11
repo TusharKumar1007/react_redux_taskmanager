@@ -8,6 +8,9 @@ export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
   curTasks = curTasks.slice().sort((a, b) => b.id - a.id);
 
+  console.log(curTasks);
+  
+
   const dispatch = useDispatch();
   return (
     <div className="p-4 bg-slate-700 text-slate-200 rounded text-center w-1/2 shadow-2xl">

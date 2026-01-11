@@ -2,13 +2,12 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 import { addTask } from "../features/taskSlice";
+import { prepareUserTask } from "../../services/taskApi";
 
 export function AddTaskForm() {
   const dispatch = useDispatch();
   const [userTask, setuserTask] = useState("");
-  function prepareUserTask(userTaskInput) {
-    return { id: Date.now(), title: userTaskInput, done: false, editMode:false };
-  }
+
 
   return (
     <form
