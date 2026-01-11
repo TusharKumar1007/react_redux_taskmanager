@@ -5,7 +5,8 @@ import { AddTaskForm } from "../layout/addTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
 
 export default function Task() {
-  const curTasks = useSelector((state) => state.tasks.tasks);
+  let curTasks = useSelector((state) => state.tasks.tasks);
+  curTasks = curTasks.slice().sort((a, b) => b.id - a.id);
 
   const dispatch = useDispatch();
   return (
@@ -19,7 +20,7 @@ export default function Task() {
             return (
               <div
                 key={task.id}
-                className={`flex gap-2 justify-between mt-2 px-4 items-center outline outline-slate-200 rounded py-2 transition-all ${task.done && "opacity-50 hover:opacity-100"}`}>
+                className={`flex gap-2 justify-between mt-2 px-4 items-center outline-2 outline-teal-500 rounded py-2 transition-all ${task.done && "outline-green-500! opacity-50 hover:opacity-100"}`}>
                 <div className="flex gap-4 justify-center">
                   <input
                     type="checkbox"
