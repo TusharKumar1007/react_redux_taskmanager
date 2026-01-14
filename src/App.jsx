@@ -1,16 +1,23 @@
 import Task from "./app/features/task";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getTasks } from "./app/features/taskSlice";
+import LoginForm from "./app/layout/loginForm"
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { getTasks } from "./app/features/taskSlice";
 export default function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getTasks())
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getTasks())
 
-  }, [dispatch])
+  // }, [dispatch])
+  // return (
+  //   <div className="min-h-dvh flex justify-center items-center bg-slate-100">
+  //     <Task />
+  //   </div>
+  // );
+
   return (
-    <div className="min-h-dvh flex justify-center items-center bg-slate-100">
-      <Task />
+    <div className="min-h-dvh flex justify-center items-center bg-slate-800">
+      <LoginForm />
     </div>
-  );
+  )
 }

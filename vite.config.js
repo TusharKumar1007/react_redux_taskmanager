@@ -7,7 +7,15 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
   server: {
     proxy: {
-      "/db": {
+      "/auth": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/tasks": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/account": {
         target: "http://localhost:3000",
         changeOrigin: true,
       },
