@@ -16,7 +16,7 @@ export const getCurrentUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       return await getCurrentUserApi();
-    } catch (e) {
+    } catch {
       return rejectWithValue(null);
     }
   }

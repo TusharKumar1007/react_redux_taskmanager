@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCurrentUser } from "./app/features/taskSlice";
-// import { getTasks } from "./app/features/taskSlice";
 function RequireAuth({ children }) {
   const gotUser = useSelector((state) => state.tasks.gotUser);
 
@@ -14,22 +13,9 @@ function RequireAuth({ children }) {
 export default function App() {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.tasks.userName);
-
-  // const gotUser = useSelector(state => state.tasks.gotUser)
   useEffect(() => {
     dispatch(getCurrentUser())
   }, [dispatch])
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getTasks())
-
-  // }, [dispatch])
-  // return (
-  //   <div className="min-h-dvh flex justify-center items-center bg-slate-100">
-  //     <Task />
-  //   </div>
-  // );
 
   return (
     <div className="min-h-dvh flex justify-center items-center bg-slate-800">
