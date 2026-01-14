@@ -1,14 +1,26 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // import { addTask } from "../features/taskSlice";
-import { getUser,registerUser } from "../features/taskSlice";
+import { getUser, registerUser } from "../features/taskSlice";
 // import { prepareUserTask } from "../../services/taskApi";
 
 export default function LoginForm() {
     const dispatch = useDispatch();
     const error = useSelector(state => state.tasks.error)
+    const gotUser = useSelector(state => state.tasks.gotUser)
+
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if (gotUser) {
+
+            navigate("/mytasks");
+        }
+    }, [gotUser, navigate])
 
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");

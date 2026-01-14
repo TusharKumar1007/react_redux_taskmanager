@@ -28,3 +28,15 @@ export const registerNewUser = async ({ userName, email, password }) => {
 
   return data.user;
 };
+
+export const getCurrentUserApi = async () => {
+  const res = await fetch("/whoami", {
+    credentials: "include",
+  });
+
+  if (!res.ok) throw new Error("Not authenticated");
+
+  const { userName, tasks } = await res.json();
+
+  return { userName, tasks };
+};

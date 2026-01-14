@@ -8,26 +8,33 @@ export function prepareUserTask(userTaskInput) {
   return { id: Date.now(), title: userTaskInput, done: false, editMode: false };
 }
 
-export const addTaskApi = async (title) => {
+export const addTaskApi = async (taskTitle) => {
   const res = await fetch("/tasks/addTask", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title }),
+    body: JSON.stringify({ taskTitle }),
   });
-  return res.json();
+  const { taskId, title, done, goEditMode, createdAt, updatedAt } =
+    await res.json();
+  return { taskId, title, done, goEditMode, createdAt, updatedAt };
 };
-export const deleteTaskApi = async (id) => {
+export const deleteTaskApi = async (taskId) => {
   const res = await fetch(`/tasks/removeTask`, {
     method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ taskId }),
   });
-  return { id };
+  const updatedTasks = await res.json();
+  return updatedTasks;
 };
 
 export const updateTaskApi = async (taskId, newTitle) => {
   const res = await fetch(`/tasks/updateTask`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ newTitle }),
+    body: JSON.stringify({ taskId, newTitle }),
   });
-  return { taskId, newTitle };
+  const { updatedTasks } = await res.json();
+  
+  return updatedTasks;
 };

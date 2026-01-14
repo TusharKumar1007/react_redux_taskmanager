@@ -21,14 +21,14 @@ export default function Task() {
           curTasks.map((task) => {
             return (
               <div
-                key={task.id}
+                key={task.taskId}
                 className={`flex gap-2 justify-between mt-2 px-4 items-center outline-2 outline-teal-500 rounded py-2 transition-all ${task.done && "outline-green-500! opacity-50 hover:opacity-100"}`}>
                 <div className="flex gap-4 justify-center">
                   <input
                     type="checkbox"
                     onChange={(e) =>
                       dispatch(
-                        updateDoneTask({ id: task.id, isDone: e.target.checked })
+                        updateDoneTask({ id: task.taskId, isDone: e.target.checked })
                       )
                     }
                     checked={task.done}
@@ -37,7 +37,7 @@ export default function Task() {
                     <li
                       onClick={() =>
                         dispatch(
-                          toggleEditMode({ id: task.id, goEditMode: true })
+                          toggleEditMode({ id: task.taskId, goEditMode: true })
                         )
                       }
                       className={`text-xl capitalize cursor-pointer ${task.done && "line-through"
@@ -45,11 +45,11 @@ export default function Task() {
                       {task.title}
                     </li>
                   ) : (
-                    <UpdateTaskForm id={task.id} title={task.title} />
+                    <UpdateTaskForm id={task.taskId} title={task.title} />
                   )}
                 </div>
                 <button
-                  onClick={() => dispatch(deleteTask(task.id))}
+                  onClick={() => dispatch(deleteTask(task.taskId))}
                   className="bg-red-700  rounded px-4 py-2 font-semibold cursor-pointer hover:bg-red-600">
                   Remove
                 </button>

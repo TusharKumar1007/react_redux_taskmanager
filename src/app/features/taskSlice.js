@@ -5,7 +5,22 @@ import {
   deleteTaskApi,
   updateTaskApi,
 } from "../../services/taskApi";
-import { loginUser, registerNewUser } from "../../services/authApi";
+import {
+  loginUser,
+  registerNewUser,
+  getCurrentUserApi,
+} from "../../services/authApi";
+
+export const getCurrentUser = createAsyncThunk(
+  "auth/getCurrentUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await getCurrentUserApi();
+    } catch (e) {
+      return rejectWithValue(null);
+    }
+  }
+);
 
 export const getUser = createAsyncThunk(
   "login/getUser",
@@ -54,6 +69,7 @@ const taskSlice = createSlice({
   name: "tasks",
   initialState: {
     tasks: [],
+    userName: "",
     error: "",
     gotUser: false,
   },
@@ -62,22 +78,30 @@ const taskSlice = createSlice({
       state.tasks = [...state.tasks, action.payload];
     },
     removeTask: (state, action) => {
-      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+      state.tasks = state.tasks.filter(
+        (task) => task.taskId !== action.payload.taskedIdRemoved
+      );
     },
     updateDoneTask: (state, action) => {
-      let curTask = state.tasks.find((task) => task.id === action.payload.id);
+      let curTask = state.tasks.find(
+        (task) => task.taskId === action.payload.id
+      );
       if (curTask) {
         curTask.done = action.payload.isDone;
       }
     },
     toggleEditMode: (state, action) => {
-      const curTask = state.tasks.find((task) => task.id === action.payload.id);
+      const curTask = state.tasks.find(
+        (task) => task.taskId === action.payload.id
+      );
       if (curTask) {
         curTask.editMode = action.payload.goEditMode;
       }
     },
     replaceTask: (state, action) => {
-      const curTask = state.tasks.find((task) => task.id === action.payload.id);
+      const curTask = state.tasks.find(
+        (task) => task.taskId === action.payload.id
+      );
       if (curTask) {
         curTask.title = action.payload.title;
         curTask.editMode = false;
@@ -86,10 +110,19 @@ const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.gotUser = true;
+        state.tasks = action.payload.tasks;
+        state.userName = action.payload.userName;
+      })
+      .addCase(getCurrentUser.rejected, (state) => {
+        state.gotUser = false;
+        state.tasks = [];
+      })
       .addCase(getUser.fulfilled, (state, action) => {
         state.tasks = action.payload.user.tasks;
         state.error = null;
-        state.stat = true;
+        state.gotUser = true;
       })
       .addCase(getUser.rejected, (state, action) => {
         // state.error = "Invalid credientials";
@@ -109,21 +142,23 @@ const taskSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(createTask.fulfilled, (state, action) => {
-        state.tasks.push(action.payload);
+        const { taskId, title, done, goEditMode, createdAt, updatedAt } =
+          action.payload;
+
+        state.tasks.push({
+          taskId,
+          title,
+          done,
+          goEditMode,
+          createdAt,
+          updatedAt,
+        });
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        state.tasks = state.tasks.filter(
-          (task) => task.id !== action.payload.id
-        );
+        state.tasks = action.payload.updatedTasks;
       })
       .addCase(updateTask.fulfilled, (state, action) => {
-        const curTask = state.tasks.find(
-          (task) => task.id === action.payload.id
-        );
-        if (curTask) {
-          curTask.title = action.payload.title;
-          curTask.editMode = false;
-        }
+        state.tasks = action.payload;
       });
   },
 });

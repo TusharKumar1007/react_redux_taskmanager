@@ -33,6 +33,8 @@ export function UpdateTaskForm({ title, id }) {
         value={userTask}
         onChange={(e) => setuserTask(e.target.value)}
         required
+        autoFocus
+        onFocus={e=>e.target.select()}
       />
       <button className="ml-2 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-teal-700 font-semibold hover:bg-teal-600 ">
         Update
