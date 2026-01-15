@@ -10,6 +10,7 @@ import {
   loginUser,
   registerNewUser,
   getCurrentUserApi,
+  LogOutApi,
 } from "../../services/authApi";
 
 export const getCurrentUser = createAsyncThunk(
@@ -71,6 +72,11 @@ export const toggleTaskDone = createAsyncThunk(
   async ({ id, isDone }) => await toggleTaskDoneApi(id, isDone)
 );
 
+export const logOut = createAsyncThunk(
+  "logout/logOut",
+  async () => await LogOutApi()
+);
+
 const taskSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -127,6 +133,7 @@ const taskSlice = createSlice({
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.tasks = action.payload.user.tasks;
+        state.userName = action.payload.user.userName;
         state.error = null;
         state.gotUser = true;
       })
@@ -168,6 +175,11 @@ const taskSlice = createSlice({
       })
       .addCase(toggleTaskDone.fulfilled, (state, action) => {
         state.tasks = action.payload;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.gotUser = false;
+        state.tasks = [];
+        state.userName = "";
       });
   },
 });

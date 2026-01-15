@@ -40,3 +40,18 @@ export const getCurrentUserApi = async () => {
 
   return { userName, tasks };
 };
+
+export const LogOutApi = async () => {
+  const res = await fetch("/auth/logout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || "Something went wrong");
+  }
+
+  return data.message;
+};
