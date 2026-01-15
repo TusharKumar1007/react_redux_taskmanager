@@ -38,3 +38,13 @@ export const updateTaskApi = async (taskId, newTitle) => {
   
   return updatedTasks;
 };
+export const toggleTaskDoneApi = async (taskId, isdone) => {
+  const res = await fetch(`/tasks/toogleTaskDone`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ taskId, isdone }),
+  });
+  const { updatedTasks } = await res.json();
+
+  return updatedTasks;
+};

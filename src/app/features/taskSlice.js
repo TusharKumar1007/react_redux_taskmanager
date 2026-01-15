@@ -4,6 +4,7 @@ import {
   addTaskApi,
   deleteTaskApi,
   updateTaskApi,
+  toggleTaskDoneApi,
 } from "../../services/taskApi";
 import {
   loginUser,
@@ -63,6 +64,11 @@ export const updateTask = createAsyncThunk(
   async ({ id, title }) => {
     return await updateTaskApi(id, title);
   }
+);
+
+export const toggleTaskDone = createAsyncThunk(
+  "tasks/toggleTaskDone",
+  async ({ id, isDone }) => await toggleTaskDoneApi(id, isDone)
 );
 
 const taskSlice = createSlice({
@@ -158,6 +164,9 @@ const taskSlice = createSlice({
         state.tasks = action.payload.updatedTasks;
       })
       .addCase(updateTask.fulfilled, (state, action) => {
+        state.tasks = action.payload;
+      })
+      .addCase(toggleTaskDone.fulfilled, (state, action) => {
         state.tasks = action.payload;
       });
   },

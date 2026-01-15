@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { toggleEditMode, updateDoneTask } from "./taskSlice";
+import { toggleEditMode, toggleTaskDone } from "./taskSlice";
 import { Header } from "../layout/header";
 import { AddTaskForm } from "../layout/addTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
@@ -7,7 +7,9 @@ import { deleteTask } from "./taskSlice";
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
-  curTasks = curTasks.slice().sort((a, b) => b.id - a.id);
+  curTasks = curTasks.slice().sort((a, b) => b.taskId - a.taskId);
+
+
 
 
   const dispatch = useDispatch();
@@ -17,7 +19,7 @@ export default function Task() {
       <AddTaskForm />
 
       <ul className="mt-4">
-        {curTasks.length > 0 &&
+        {curTasks.length > 0 ?
           curTasks.map((task) => {
             return (
               <div
@@ -28,7 +30,7 @@ export default function Task() {
                     type="checkbox"
                     onChange={(e) =>
                       dispatch(
-                        updateDoneTask({ id: task.taskId, isDone: e.target.checked })
+                        toggleTaskDone({ id: task.taskId, isDone: e.target.checked })
                       )
                     }
                     checked={task.done}
@@ -55,7 +57,7 @@ export default function Task() {
                 </button>
               </div>
             );
-          })}
+          }) : <h2 className="text-7xl text-slate-300 mt-2 p-4">No Task yet...</h2>}
       </ul>
     </div>
   );
