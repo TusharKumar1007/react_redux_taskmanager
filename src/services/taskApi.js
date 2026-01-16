@@ -1,5 +1,6 @@
+import { apiFetch } from "../api/fetchClient";
 export const fetchTaskApi = async () => {
-  const res = await fetch("/tasks");
+  const res = await apiFetch("/tasks");
   const data = await res.json();
   return data.tasks;
 };
@@ -9,7 +10,7 @@ export function prepareUserTask(userTaskInput) {
 }
 
 export const addTaskApi = async (taskTitle) => {
-  const res = await fetch("/tasks/addTask", {
+  const res = await apiFetch("/tasks/addTask", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ taskTitle }),
@@ -19,7 +20,7 @@ export const addTaskApi = async (taskTitle) => {
   return { taskId, title, done, goEditMode, createdAt, updatedAt };
 };
 export const deleteTaskApi = async (taskId) => {
-  const res = await fetch(`/tasks/removeTask`, {
+  const res = await apiFetch(`/tasks/removeTask`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ taskId }),
@@ -29,7 +30,7 @@ export const deleteTaskApi = async (taskId) => {
 };
 
 export const updateTaskApi = async (taskId, newTitle) => {
-  const res = await fetch(`/tasks/updateTask`, {
+  const res = await apiFetch(`/tasks/updateTask`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ taskId, newTitle }),
@@ -39,7 +40,7 @@ export const updateTaskApi = async (taskId, newTitle) => {
   return updatedTasks;
 };
 export const toggleTaskDoneApi = async (taskId, isdone) => {
-  const res = await fetch(`/tasks/toogleTaskDone`, {
+  const res = await apiFetch(`/tasks/toogleTaskDone`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ taskId, isdone }),

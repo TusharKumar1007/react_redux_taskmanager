@@ -1,5 +1,7 @@
+import { apiFetch } from "../api/fetchClient";
+
 export const loginUser = async ({ email, password }) => {
-  const res = await fetch("/auth/login", {
+  const res = await apiFetch("/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -14,15 +16,13 @@ export const loginUser = async ({ email, password }) => {
 };
 
 export const registerNewUser = async ({ userName, email, password }) => {
-  const res = await fetch("/auth/register", {
+  const res = await apiFetch("/auth/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userName, email, password }),
   });
 
   const data = await res.json();
-  console.log(data);
-  
 
   if (!res.ok) {
     throw new Error(data.error || "Something went wrong");
@@ -32,7 +32,7 @@ export const registerNewUser = async ({ userName, email, password }) => {
 };
 
 export const getCurrentUserApi = async () => {
-  const res = await fetch("/whoami", {
+  const res = await apiFetch("/whoami", {
     credentials: "include",
   });
 
@@ -44,7 +44,7 @@ export const getCurrentUserApi = async () => {
 };
 
 export const LogOutApi = async () => {
-  const res = await fetch("/auth/logout", {
+  const res = await apiFetch("/auth/logout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
   });
@@ -59,7 +59,7 @@ export const LogOutApi = async () => {
 };
 
 export const deleteAccount = async () => {
-  const res = await fetch("/account/delete", {
+  const res = await apiFetch("/account/delete", {
     method: "delete",
   });
   const data = await res.json();
