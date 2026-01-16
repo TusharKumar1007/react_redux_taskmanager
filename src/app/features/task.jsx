@@ -14,7 +14,7 @@ export default function Task() {
 
   const dispatch = useDispatch();
   return (
-    <div className="p-4 bg-slate-700 text-slate-200 rounded text-center w-1/2 shadow-2xl">
+    <div className="p-4 bg-slate-700 text-slate-200 transition-all rounded text-center w-1/2 shadow-2xl">
       <Header />
       <AddTaskForm />
 

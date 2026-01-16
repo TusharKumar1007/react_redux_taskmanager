@@ -11,6 +11,7 @@ import {
   registerNewUser,
   getCurrentUserApi,
   LogOutApi,
+  deleteAccount,
 } from "../../services/authApi";
 
 export const getCurrentUser = createAsyncThunk(
@@ -77,6 +78,11 @@ export const logOut = createAsyncThunk(
   async () => await LogOutApi()
 );
 
+export const deleteUser = createAsyncThunk(
+  "delete/deleteUser",
+  async () => await deleteAccount()
+);
+
 const taskSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -84,6 +90,7 @@ const taskSlice = createSlice({
     userName: "",
     error: "",
     gotUser: false,
+    inAccountSettings: false,
   },
   reducers: {
     addTask: (state, action) => {
@@ -146,6 +153,7 @@ const taskSlice = createSlice({
         state.tasks = action.payload.tasks;
         state.error = null;
         state.gotUser = true;
+        state.userName = action.payload.userName;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.error = action.payload;
@@ -177,6 +185,11 @@ const taskSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(logOut.fulfilled, (state) => {
+        state.gotUser = false;
+        state.tasks = [];
+        state.userName = "";
+      })
+      .addCase(deleteUser.fulfilled, (state) => {
         state.gotUser = false;
         state.tasks = [];
         state.userName = "";

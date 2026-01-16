@@ -21,6 +21,8 @@ export const registerNewUser = async ({ userName, email, password }) => {
   });
 
   const data = await res.json();
+  console.log(data);
+  
 
   if (!res.ok) {
     throw new Error(data.error || "Something went wrong");
@@ -53,5 +55,16 @@ export const LogOutApi = async () => {
     throw new Error(data.error || "Something went wrong");
   }
 
+  return data.message;
+};
+
+export const deleteAccount = async () => {
+  const res = await fetch("/account/delete", {
+    method: "delete",
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || "Something went wrong");
+  }
   return data.message;
 };

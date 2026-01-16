@@ -21,7 +21,7 @@ export function AddTaskForm() {
       <input
         type="text"
         placeholder="read a book."
-        className="h-10 w-4/5 px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus:placeholder:text-transparent"
+        className="h-10 w-4/5 px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus:placeholder:text-transparent focus-within:border-green-600"
         spellCheck="false"
         value={userTask}
         onChange={(e) => setuserTask(e.target.value)}
