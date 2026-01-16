@@ -14,7 +14,7 @@ export default function Task() {
 
   const dispatch = useDispatch();
   return (
-    <div className="w-1/2 flex flex-col gap-2 items-center justify-center text-center shadow-2xs ">
+    <div className="w-full flex flex-col gap-2 items-center justify-center text-center shadow-2xs sm:w-3/5 lg:w-1/2 ">
 
       <AddTaskForm />
       <div className="p-4 bg-[#2B2A2A] text-slate-200 transition-all rounded text-center w-full shadow-2xl">
@@ -27,7 +27,6 @@ export default function Task() {
                 <div
                   key={task.taskId}
                   className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all ${task.done && "opacity-50 hover:opacity-100"}`}>
-                  {/* className={`flex gap-2 justify-between mt-2 px-4 items-center outline-2 outline-teal-500 rounded py-2 transition-all ${task.done && "outline-green-500! opacity-50 hover:opacity-100"}`}> */}
                   <div className="flex gap-4 justify-center">
                     <input
                       className=" rounded-xs cursor-pointer"
@@ -47,7 +46,7 @@ export default function Task() {
                             toggleEditMode({ id: task.taskId, goEditMode: true })
                           )
                         }
-                        className={`text-xl capitalize cursor-pointer ${task.done && "line-through"
+                        className={`text sm:text-xl capitalize cursor-pointer ${task.done && "line-through"
                           }`}>
                         {task.title}
                       </li>

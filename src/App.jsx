@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className=" min-h-dvh flex justify-center items-center transition-all bg-linear-to-br from-[#D02752] to-[#F63049]" style={{ fontFamily: "Inter" }}>
+      <div className="p-4 min-h-dvh flex justify-center items-center transition-all bg-linear-to-br from-[#D02752] to-[#F63049]" style={{ fontFamily: "Inter" }}>
 
         {userName && (
           <div>

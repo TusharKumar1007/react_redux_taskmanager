@@ -7,14 +7,14 @@ export default function AccountForm() {
     const dispatch = useDispatch()
     const [userInput, setUserInput] = useState("")
     return (
-        <div className="w-1/2 bg-[#2B2A2A] p-4 rounded text-center shadow-2xl">
+        <div className="w-full sm:w-3/5 lg:w-1/2 bg-[#2B2A2A] p-4 rounded text-center shadow-2xl">
             <form onSubmit={(e) => {
                 e.preventDefault();
                 if (userInput.toLocaleLowerCase() === "yes") {
 
                     dispatch(deleteUser())
                 }
-                
+
             }
 
             }>
