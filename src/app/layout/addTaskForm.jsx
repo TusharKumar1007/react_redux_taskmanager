@@ -1,35 +1,35 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-import { addTask } from "../features/taskSlice";
+// import { addTask } from "../features/taskSlice";
+import { createTask } from "../features/taskSlice";
+// import { prepareUserTask } from "../../services/taskApi";
 
 export function AddTaskForm() {
   const dispatch = useDispatch();
   const [userTask, setuserTask] = useState("");
-  function prepareUserTask(userTaskInput) {
-    return { id: Date.now(), title: userTaskInput, done: false, editMode:false };
-  }
+
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(addTask(prepareUserTask(userTask)));
+        dispatch(createTask(userTask));
         setuserTask("");
       }}
-      className="mt-4">
+      className="mb-4 w-full bg-[#2B2A2A] p-2 rounded shadow-2xl">
+      <button className=" outline-0 px-4 py-2 rounded cursor-pointer transition-all font-semibold text-slate-500">
+        <i class="fa-solid fa-plus"></i>
+      </button>
       <input
         type="text"
-        placeholder="read a book."
-        className="h-10 w-4/5 px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus:placeholder:text-transparent"
+        placeholder="create a new task"
+        className="h-10 w-4/5 px-2 text-slate-200 outline-0 transition-all placeholder:text-slate-300 "
         spellCheck="false"
         value={userTask}
         onChange={(e) => setuserTask(e.target.value)}
         required
       />
-      <button className="ml-2 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-teal-700 font-semibold hover:bg-teal-600 ">
-        Add
-      </button>
     </form>
   );
 }
