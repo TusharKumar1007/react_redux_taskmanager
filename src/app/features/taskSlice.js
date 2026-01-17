@@ -13,6 +13,7 @@ import {
   LogOutApi,
   deleteAccount,
 } from "../../services/authApi";
+import { prepareTask } from "./prepareTask";
 
 export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
@@ -94,11 +95,12 @@ const taskSlice = createSlice({
   },
   reducers: {
     addTask: (state, action) => {
-      state.tasks = [...state.tasks, action.payload];
+      const taskObj = prepareTask(action.payload);
+      state.tasks = [...state.tasks, taskObj];
     },
     removeTask: (state, action) => {
       state.tasks = state.tasks.filter(
-        (task) => task.taskId !== action.payload.taskedIdRemoved
+        (task) => task.taskId !== action.payload
       );
     },
     updateDoneTask: (state, action) => {
@@ -163,26 +165,25 @@ const taskSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(createTask.fulfilled, (state, action) => {
-        const { taskId, title, done, goEditMode, createdAt, updatedAt } =
-          action.payload;
-
-        state.tasks.push({
-          taskId,
-          title,
-          done,
-          goEditMode,
-          createdAt,
-          updatedAt,
-        });
+        // const { taskId, title, done, goEditMode, createdAt, updatedAt } =
+        //   action.payload;
+        // state.tasks.push({
+        //   taskId,
+        //   title,
+        //   done,
+        //   goEditMode,
+        //   createdAt,
+        //   updatedAt,
+        // });
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        state.tasks = action.payload.updatedTasks;
+        // state.tasks = action.payload.updatedTasks;
       })
       .addCase(updateTask.fulfilled, (state, action) => {
-        state.tasks = action.payload;
+        // state.tasks = action.payload;
       })
       .addCase(toggleTaskDone.fulfilled, (state, action) => {
-        state.tasks = action.payload;
+        // state.tasks = action.payload;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.gotUser = false;

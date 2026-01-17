@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { toggleEditMode, toggleTaskDone } from "./taskSlice";
-import { Header } from "../layout/header";
+import { removeTask, toggleEditMode, toggleTaskDone, updateDoneTask } from "./taskSlice";
 import { AddTaskForm } from "../layout/addTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
 import { deleteTask } from "./taskSlice";
@@ -8,9 +7,6 @@ import { deleteTask } from "./taskSlice";
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
   curTasks = curTasks.slice().sort((a, b) => b.taskId - a.taskId);
-
-
-
 
   const dispatch = useDispatch();
   return (
@@ -31,16 +27,19 @@ export default function Task() {
                     <input
                       className=" rounded-xs cursor-pointer"
                       type="checkbox"
-                      onChange={(e) =>
+                      onChange={(e) => {
+
+                        dispatch(updateDoneTask({ id: task.taskId, isDone: e.target.checked }))
                         dispatch(
                           toggleTaskDone({ id: task.taskId, isDone: e.target.checked })
                         )
+                      }
                       }
                       checked={task.done}
                     />
                     {!task.editMode ? (
                       <li
-                      title="Edit"
+                        title="Edit"
                         onClick={() =>
                           dispatch(
                             toggleEditMode({ id: task.taskId, goEditMode: true })
@@ -55,7 +54,10 @@ export default function Task() {
                     )}
                   </div>
                   <button
-                    onClick={() => dispatch(deleteTask(task.taskId))}
+                    onClick={() => {
+                      dispatch(removeTask(task.taskId))
+                      dispatch(deleteTask(task.taskId))
+                    }}
                     className=" rounded  font-semibold cursor-pointer text-red-500 ">
                     <i class="fa-solid fa-trash"></i>
 

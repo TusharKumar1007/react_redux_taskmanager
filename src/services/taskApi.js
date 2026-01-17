@@ -5,9 +5,6 @@ export const fetchTaskApi = async () => {
   return data.tasks;
 };
 
-export function prepareUserTask(userTaskInput) {
-  return { id: Date.now(), title: userTaskInput, done: false, editMode: false };
-}
 
 export const addTaskApi = async (taskTitle) => {
   const res = await apiFetch("/tasks/addTask", {

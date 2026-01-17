@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 // import { replaceTask } from "../features/taskSlice";
-import { updateTask } from "../features/taskSlice";
+import { replaceTask, updateTask } from "../features/taskSlice";
 
 export function UpdateTaskForm({ title, id }) {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export function UpdateTaskForm({ title, id }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-
+        dispatch(replaceTask({ id, title: userTask }))
         dispatch(updateTask({ id, title: userTask }));
         setuserTask("");
       }}
