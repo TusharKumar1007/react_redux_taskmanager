@@ -34,11 +34,11 @@ export default function LoginForm() {
 
             <main className="w-full lg:w-1/2 flex flex-col items-center">
                 {error ? <h2 className="text-slate-200 px-4 py-2 bg-red-700 rounded mb-4 font-semibold text-xl shadow-2xl">{error}</h2> : null}
-                <div className="w-full lg:w-3/5 bg-[#2B2A2A] flex flex-col gap-2 items-center p-4 shadow-2xl rounded">
-                    <div className="flex gap-2 bg-[#3a3838] rounded self-end">
+                <div className="w-full lg:w-3/5 dark-bg flex flex-col gap-2 items-center p-4 shadow-2xl rounded">
+                    <div className="flex gap-2 dark-bg rounded self-end">
 
-                        <span onClick={() => setInLogin(!inLogin)} className={`cursor-pointer py-2 px-2 rounded font-semibold text-slate-400 ${inLogin ? "bg-yellow-500 text-[#2B2A2A]!" : null}`}>Login</span>
-                        <span onClick={() => setInLogin(!inLogin)} className={`cursor-pointer py-2 px-2 rounded font-semibold text-slate-400 ${!inLogin ? "bg-yellow-500 text-[#2B2A2A]!" : null}`}>Register</span>
+                        <span onClick={() => setInLogin(!inLogin)} className={`cursor-pointer py-2 px-2 rounded font-semibold text-slate-400 ${inLogin ? "bg-yellow-500 dark-font" : null}`}>Login</span>
+                        <span onClick={() => setInLogin(!inLogin)} className={`cursor-pointer py-2 px-2 rounded font-semibold text-slate-400 ${!inLogin ? "bg-yellow-500 dark-font" : null}`}>Register</span>
                     </div>
                     <form
                         onSubmit={(e) => {
@@ -82,7 +82,7 @@ export default function LoginForm() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button disabled={disable} className={`text-[#2B2A2A] font-semibold mt-4 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-yellow-500 hover:bg-yellow-600 w-4/5 ${disable && "cursor-not-allowed! bg-[#4c4646]! text-stone-300"}`} >
+                        <button disabled={disable} className={`dark-font font-semibold mt-4 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-yellow-500 hover:bg-yellow-600 w-4/5 ${disable && "cursor-not-allowed! gray-bg text-stone-300"}`} >
                             {!disable ? (!inLogin ? "Register" : "Login") :
                                 <i className="fa-solid fa-spinner animate-spin text-yellow-400 " ></i>
                             }

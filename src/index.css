@@ -1,1 +1,42 @@
 @import "tailwindcss";
+
+:root {
+  --my-dark-color: #2b2a2a;
+  --my-gray-color: #4c4646;
+}
+
+.dark-bg {
+  background-color: var(--my-dark-color) !important;
+}
+
+.dark-font {
+  color: var(--my-dark-color) !important;
+}
+
+.gray-font{
+    color: var(--my-gray-color) !important;
+}
+
+.gray-bg{
+    background-color: var(--my-gray-color) !important;
+}
+
+.anim-bg {
+  background: linear-gradient(270deg, #d02752, #ec4899, #f63049, #af63f1);
+  background-size: 600% 600%;
+  animation: gradientBG 30s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* bg-linear-to-br from-[#D02752] to-[#F63049]  previous bg */

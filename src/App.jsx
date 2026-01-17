@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="p-4 min-h-dvh  transition-all bg-linear-to-br from-[#D02752] to-[#F63049]" style={{ fontFamily: "Inter" }}>
+      <div className="p-4 min-h-dvh  transition-all  anim-bg" style={{ fontFamily: "Inter" }}>
 
         {userName && (
           <div className="md:px-6 h-30 flex justify-between items-start">
@@ -45,7 +45,7 @@ export default function App() {
 
                 <Link
                   to="/setting"
-                  className="transition-all   p-2 bg-yellow-500 text-[#2B2A2A]  font-semibold rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]"
+                  className="transition-all   p-2 bg-yellow-500 dark-font  font-semibold rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]"
                 >
                   Account
                 </Link>

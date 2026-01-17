@@ -9,7 +9,7 @@ export default function AccountForm() {
     return (
         <div className="flex items-center justify-center min-h-[50vh]">
 
-            <div className="w-full sm:w-3/5 lg:w-1/2 bg-[#2B2A2A] py-2  rounded text-center shadow-2xl">
+            <div className="w-full sm:w-3/5 lg:w-1/2 dark-bg py-2  rounded text-center shadow-2xl">
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     if (userInput.toLocaleLowerCase() === "yes") {
