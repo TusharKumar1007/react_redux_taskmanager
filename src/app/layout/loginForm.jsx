@@ -26,6 +26,7 @@ export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [showPass, setShowPass] = useState(false);
 
     const [inLogin, setInLogin] = useState(true)
 
@@ -73,15 +74,22 @@ export default function LoginForm() {
                                 required
                             />
                         }
-                        <input
-                            type="password"
-                            placeholder="Your Password                  Password"
-                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
-                            spellCheck="false"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
+                        <div className="flex justify-center items-center w-full relative">
+
+                            <input
+                                type={showPass ? "input" : "password"}
+                                placeholder="Your Password               "
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
+                                spellCheck="false"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            <i onClick={() => {
+                                setShowPass(() => !showPass)
+
+                            }} className={`fa-solid ${showPass ? "fa-eye" : "fa-eye-slash"} text-yellow-400 cursor-pointer absolute right-2`}></i>
+                        </div>
                         <button disabled={disable} className={`dark-font font-semibold mt-4 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-yellow-500 hover:bg-yellow-600 w-4/5 ${disable && "cursor-not-allowed! gray-bg text-stone-300"}`} >
                             {!disable ? (!inLogin ? "Register" : "Login") :
                                 <i className="fa-solid fa-spinner animate-spin text-yellow-400 " ></i>
