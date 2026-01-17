@@ -51,7 +51,7 @@ export default function LoginForm() {
                     className="mt-4 flex flex-col gap-2 p-4  rounded w-full items-center">
                     <input
                         type="email"
-                        placeholder="joe@email.com                         Email"
+                        placeholder="joe@email.com                        Email"
                         className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
                         spellCheck="false"
                         value={email}
@@ -62,7 +62,7 @@ export default function LoginForm() {
                         !inLogin &&
                         <input
                             type="text"
-                            placeholder="Tiger                                 User Name"
+                            placeholder="Tiger                                User Name"
                             className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
                             spellCheck="false"
                             value={userName}
@@ -72,7 +72,7 @@ export default function LoginForm() {
                     }
                     <input
                         type="password"
-                        placeholder="Your Password                   Password"
+                        placeholder="Your Password                  Password"
                         className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
                         spellCheck="false"
                         value={password}

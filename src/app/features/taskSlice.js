@@ -15,6 +15,7 @@ import {
 } from "../../services/authApi";
 import { prepareTask } from "./prepareTask";
 
+
 export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
   async (_, { rejectWithValue }) => {
@@ -54,7 +55,7 @@ export const getTasks = createAsyncThunk(
 );
 export const createTask = createAsyncThunk(
   "tasks/createTask",
-  async (title) => await addTaskApi(title)
+  async ({ newTaskId, userTask }) => await addTaskApi(newTaskId, userTask),
 );
 
 export const deleteTask = createAsyncThunk(
@@ -95,7 +96,8 @@ const taskSlice = createSlice({
   },
   reducers: {
     addTask: (state, action) => {
-      const taskObj = prepareTask(action.payload);
+      const { newTaskId ,userTask}=action.payload;
+      const taskObj = prepareTask(newTaskId,userTask);
       state.tasks = [...state.tasks, taskObj];
     },
     removeTask: (state, action) => {

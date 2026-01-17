@@ -1,6 +1,6 @@
-export const prepareTask = (taskTitle) => {
+export const prepareTask = (newTaskId,taskTitle) => {
   return {
-    taskId: Date.now(),
+    taskId: newTaskId,
     title: taskTitle,
     done: false,
     goEditMode: false,

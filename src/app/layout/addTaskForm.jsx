@@ -14,8 +14,9 @@ export function AddTaskForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(addTask(userTask))
-        dispatch(createTask(userTask));
+        const newTaskId = Date.now();
+        dispatch(addTask({newTaskId, userTask}));
+        dispatch(createTask({newTaskId, userTask}));
         setuserTask("");
       }}
       className="mb-4 w-full bg-[#2B2A2A] p-2 rounded shadow-2xl">

@@ -5,12 +5,11 @@ export const fetchTaskApi = async () => {
   return data.tasks;
 };
 
-
-export const addTaskApi = async (taskTitle) => {
+export const addTaskApi = async (tId, taskTitle) => {
   const res = await apiFetch("/tasks/addTask", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ taskTitle }),
+    body: JSON.stringify({ tId, taskTitle }),
   });
   const { taskId, title, done, goEditMode, createdAt, updatedAt } =
     await res.json();
@@ -33,7 +32,7 @@ export const updateTaskApi = async (taskId, newTitle) => {
     body: JSON.stringify({ taskId, newTitle }),
   });
   const { updatedTasks } = await res.json();
-  
+
   return updatedTasks;
 };
 export const toggleTaskDoneApi = async (taskId, isdone) => {
