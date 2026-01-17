@@ -15,7 +15,6 @@ import {
 } from "../../services/authApi";
 import { prepareTask } from "./prepareTask";
 
-
 export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
   async (_, { rejectWithValue }) => {
@@ -24,7 +23,7 @@ export const getCurrentUser = createAsyncThunk(
     } catch {
       return rejectWithValue(null);
     }
-  }
+  },
 );
 
 export const getUser = createAsyncThunk(
@@ -35,7 +34,7 @@ export const getUser = createAsyncThunk(
     } catch (e) {
       return rejectWithValue(e.message);
     }
-  }
+  },
 );
 
 export const registerUser = createAsyncThunk(
@@ -46,12 +45,12 @@ export const registerUser = createAsyncThunk(
     } catch (e) {
       return rejectWithValue(e.message);
     }
-  }
+  },
 );
 
 export const getTasks = createAsyncThunk(
   "tasks/getTasks",
-  async () => await fetchTaskApi()
+  async () => await fetchTaskApi(),
 );
 export const createTask = createAsyncThunk(
   "tasks/createTask",
@@ -60,29 +59,29 @@ export const createTask = createAsyncThunk(
 
 export const deleteTask = createAsyncThunk(
   "tasks/deleteTask",
-  async (id) => await deleteTaskApi(id)
+  async (id) => await deleteTaskApi(id),
 );
 
 export const updateTask = createAsyncThunk(
   "tasks/updateTask",
   async ({ id, title }) => {
     return await updateTaskApi(id, title);
-  }
+  },
 );
 
 export const toggleTaskDone = createAsyncThunk(
   "tasks/toggleTaskDone",
-  async ({ id, isDone }) => await toggleTaskDoneApi(id, isDone)
+  async ({ id, isDone }) => await toggleTaskDoneApi(id, isDone),
 );
 
 export const logOut = createAsyncThunk(
   "logout/logOut",
-  async () => await LogOutApi()
+  async () => await LogOutApi(),
 );
 
 export const deleteUser = createAsyncThunk(
   "delete/deleteUser",
-  async () => await deleteAccount()
+  async () => await deleteAccount(),
 );
 
 const taskSlice = createSlice({
@@ -93,21 +92,22 @@ const taskSlice = createSlice({
     error: "",
     gotUser: false,
     inAccountSettings: false,
+    disable: false,
   },
   reducers: {
     addTask: (state, action) => {
-      const { newTaskId ,userTask}=action.payload;
-      const taskObj = prepareTask(newTaskId,userTask);
+      const { newTaskId, userTask } = action.payload;
+      const taskObj = prepareTask(newTaskId, userTask);
       state.tasks = [...state.tasks, taskObj];
     },
     removeTask: (state, action) => {
       state.tasks = state.tasks.filter(
-        (task) => task.taskId !== action.payload
+        (task) => task.taskId !== action.payload,
       );
     },
     updateDoneTask: (state, action) => {
       let curTask = state.tasks.find(
-        (task) => task.taskId === action.payload.id
+        (task) => task.taskId === action.payload.id,
       );
       if (curTask) {
         curTask.done = action.payload.isDone;
@@ -115,7 +115,7 @@ const taskSlice = createSlice({
     },
     toggleEditMode: (state, action) => {
       const curTask = state.tasks.find(
-        (task) => task.taskId === action.payload.id
+        (task) => task.taskId === action.payload.id,
       );
       if (curTask) {
         curTask.editMode = action.payload.goEditMode;
@@ -123,7 +123,7 @@ const taskSlice = createSlice({
     },
     replaceTask: (state, action) => {
       const curTask = state.tasks.find(
-        (task) => task.taskId === action.payload.id
+        (task) => task.taskId === action.payload.id,
       );
       if (curTask) {
         curTask.title = action.payload.title;
@@ -137,10 +137,15 @@ const taskSlice = createSlice({
         state.gotUser = true;
         state.tasks = action.payload.tasks;
         state.userName = action.payload.userName;
+        state.disable = false;
       })
       .addCase(getCurrentUser.rejected, (state) => {
         state.gotUser = false;
         state.tasks = [];
+        state.disable = false;
+      })
+      .addCase(getCurrentUser.pending, (state) => {
+        state.disable = true;
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.tasks = action.payload.user.tasks;

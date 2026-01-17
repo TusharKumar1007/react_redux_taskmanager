@@ -15,13 +15,13 @@ export function AddTaskForm() {
       onSubmit={(e) => {
         e.preventDefault();
         const newTaskId = Date.now();
-        dispatch(addTask({newTaskId, userTask}));
-        dispatch(createTask({newTaskId, userTask}));
+        dispatch(addTask({ newTaskId, userTask }));
+        dispatch(createTask({ newTaskId, userTask }));
         setuserTask("");
       }}
       className="mb-4 w-full bg-[#2B2A2A] p-2 rounded shadow-2xl">
       <button className=" outline-0 px-4 py-2 rounded cursor-pointer transition-all font-semibold text-slate-500">
-        <i class="fa-solid fa-plus"></i>
+        <i className="fa-solid fa-plus"></i>
       </button>
       <input
         type="text"

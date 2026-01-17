@@ -23,30 +23,40 @@ export default function App() {
 
   return (
     <Router>
-      <div className="p-4 min-h-dvh flex justify-center items-center transition-all bg-linear-to-br from-[#D02752] to-[#F63049]" style={{ fontFamily: "Inter" }}>
+      <div className="p-4 min-h-dvh  transition-all bg-linear-to-br from-[#D02752] to-[#F63049]" style={{ fontFamily: "Inter" }}>
 
         {userName && (
-          <div>
-            <span className="text-2xl tracking-wide text-slate-200 capitalize font-semibold absolute left-8 top-4">
-              Hey, <span className="text-amber-400 mr-2 cursor-pointer"><Link to="/mytasks">
-                {userName}
-              </Link>
-              </span>
-            </span>
+          <div className="md:px-6 h-30 flex justify-between items-start">
+            <div className="flex justify-between items-center w-full">
 
+              <div className="flex gap-2 text-2xl">
 
-            <Link
-              to="/setting"
-              className="transition-all mr-2 absolute right-25 top-4 p-2 bg-yellow-500 text-[#2B2A2A]  font-semibold rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]"
-            >
-              Account
-            </Link>
-            <button
-              className="transition-all ml-4 bg-red-500 text-slate-200 font-semibold p-2 rounded  absolute right-8 top-4 hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A] cursor-pointer"
-              onClick={() => dispatch(logOut())}
-            >
-              Logout
-            </button>
+                <span className=" tracking-wide text-slate-200 capitalize font-semibold ">
+                  Hey,
+                </span>
+                <span className="text-amber-400 cursor-pointer font-semibold">
+                  <Link to="/mytasks">
+                    {userName}
+                  </Link>
+                </span>
+              </div>
+
+              <div className="flex gap-2">
+
+                <Link
+                  to="/setting"
+                  className="transition-all   p-2 bg-yellow-500 text-[#2B2A2A]  font-semibold rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]"
+                >
+                  Account
+                </Link>
+                <button
+                  className="transition-all bg-red-500 text-slate-200 font-semibold p-2 rounded  hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A] cursor-pointer"
+                  onClick={() => dispatch(logOut())}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
           </div>
         )}
 
