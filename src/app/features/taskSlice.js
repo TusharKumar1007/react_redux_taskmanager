@@ -152,21 +152,31 @@ const taskSlice = createSlice({
         state.userName = action.payload.user.userName;
         state.error = null;
         state.gotUser = true;
+        state.disable = false;
       })
       .addCase(getUser.rejected, (state, action) => {
         // state.error = "Invalid credientials";
         state.error = action.payload;
         state.gotUser = false;
+        state.disable = false;
+      })
+      .addCase(getUser.pending, (state) => {
+        state.disable = true;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.tasks = action.payload.tasks;
         state.error = null;
         state.gotUser = true;
         state.userName = action.payload.userName;
+        state.disable = false;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.error = action.payload;
         state.gotUser = false;
+        state.disable = false;
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.disable = true;
       })
       .addCase(getTasks.fulfilled, (state, action) => {
         state.tasks = action.payload;
