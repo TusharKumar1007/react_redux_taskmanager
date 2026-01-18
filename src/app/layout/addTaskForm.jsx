@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { v4 as uuid } from 'uuid'
 
 // import { addTask } from "../features/taskSlice";
 import { createTask, addTask } from "../features/taskSlice";
@@ -14,7 +15,7 @@ export function AddTaskForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        const newTaskId = Date.now();
+        const newTaskId = uuid();
         dispatch(addTask({ newTaskId, userTask }));
         dispatch(createTask({ newTaskId, userTask }));
         setuserTask("");

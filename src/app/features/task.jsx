@@ -6,7 +6,11 @@ import { deleteTask } from "./taskSlice";
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
-  curTasks = curTasks.slice().sort((a, b) => b.taskId - a.taskId);
+  // curTasks.reverse()
+  curTasks = [...curTasks].reverse()
+
+
+
 
   const dispatch = useDispatch();
   return (
@@ -21,44 +25,47 @@ export default function Task() {
           <ul className="mt-4">
             {curTasks.length > 0 ?
               curTasks.map((task) => {
+
                 return (
                   <div
-                    key={task.taskId}
-                    className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded ${task.done && "opacity-50 hover:opacity-100"}`}>
-                    <div className="flex gap-4 justify-center">
+                    key={task.id}
+                    className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded ${task.completed && "opacity-50 hover:opacity-100"}`}>
+                    <div className="flex gap-4 justify-center items-center">
                       <input
                         className=" rounded-xs cursor-pointer"
                         type="checkbox"
                         onChange={(e) => {
 
-                          dispatch(updateDoneTask({ id: task.taskId, isDone: e.target.checked }))
+                          dispatch(updateDoneTask({ id: task.id, isDone: e.target.checked }))
                           dispatch(
-                            toggleTaskDone({ id: task.taskId, isDone: e.target.checked })
+                            toggleTaskDone({ id: task.id, isDone: e.target.checked })
                           )
                         }
                         }
-                        checked={task.done}
+                        checked={task.completed}
                       />
-                      {!task.editMode ? (
+                      {!task.ineditmode ? (
                         <li
                           title="Edit"
                           onClick={() =>
                             dispatch(
-                              toggleEditMode({ id: task.taskId, goEditMode: true })
+                              toggleEditMode({ id: task.id, goEditMode: true })
                             )
                           }
-                          className={` text sm:text-xl capitalize cursor-pointer ${task.done && "line-through"
+                          className={` text sm:text-xl capitalize cursor-pointer ${task.completed && "line-through"
                             }`}>
-                          {task.title}
+                          {task.task}
                         </li>
                       ) : (
-                        <UpdateTaskForm id={task.taskId} title={task.title} />
+                        <UpdateTaskForm id={task.id} title={task.task} />
                       )}
+                      <span className="text-xs text-slate-500">{new Date(`${task.updatedat}`)
+                        .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                     </div>
                     <button
                       onClick={() => {
-                        dispatch(removeTask(task.taskId))
-                        dispatch(deleteTask(task.taskId))
+                        dispatch(removeTask(task.id))
+                        dispatch(deleteTask(task.id))
                       }}
                       className=" rounded  font-semibold cursor-pointer text-red-500 ">
                       <i className="fa-solid fa-trash"></i>

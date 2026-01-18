@@ -1,7 +1,9 @@
 import { apiFetch } from "../api/fetchClient";
 export const fetchTaskApi = async () => {
+
   const res = await apiFetch("/tasks");
   const data = await res.json();
+
   return data.tasks;
 };
 

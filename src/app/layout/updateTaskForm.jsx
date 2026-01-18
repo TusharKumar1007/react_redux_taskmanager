@@ -1,26 +1,18 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-// import { replaceTask } from "../features/taskSlice";
 import { replaceTask, updateTask } from "../features/taskSlice";
 
 export function UpdateTaskForm({ title, id }) {
   const dispatch = useDispatch();
   const [userTask, setuserTask] = useState(title);
-  // function prepareUserTask(userTaskInput) {
-  //   return {
-  //     id: Date.now(),
-  //     title: userTaskInput,
-  //     done: false,
-  //     editMode: false,
-  //   };
-  // }
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         dispatch(replaceTask({ id, title: userTask }))
+        
         dispatch(updateTask({ id, title: userTask }));
         setuserTask("");
       }}
@@ -37,7 +29,7 @@ export function UpdateTaskForm({ title, id }) {
         onFocus={e => e.target.select()}
       />
       <button className="ml-2 outline-0 rounded cursor-pointer transition-all font-semibold text-amber-500">
-        <i class="fa-solid fa-pen"></i>
+        <i className="fa-solid fa-pen"></i>
       </button>
     </form >
   );

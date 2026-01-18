@@ -101,33 +101,33 @@ const taskSlice = createSlice({
       state.tasks = [...state.tasks, taskObj];
     },
     removeTask: (state, action) => {
-      state.tasks = state.tasks.filter(
-        (task) => task.taskId !== action.payload,
-      );
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     updateDoneTask: (state, action) => {
-      let curTask = state.tasks.find(
-        (task) => task.taskId === action.payload.id,
-      );
+      let curTask = state.tasks.find((task) => task.id === action.payload.id);
       if (curTask) {
-        curTask.done = action.payload.isDone;
+        curTask.completed = action.payload.isDone;
       }
     },
     toggleEditMode: (state, action) => {
-      const curTask = state.tasks.find(
-        (task) => task.taskId === action.payload.id,
-      );
+      const curTask = state.tasks.find((task) => task.id === action.payload.id);
       if (curTask) {
-        curTask.editMode = action.payload.goEditMode;
+        curTask.ineditmode = action.payload.goEditMode;
       }
     },
     replaceTask: (state, action) => {
-      const curTask = state.tasks.find(
-        (task) => task.taskId === action.payload.id,
-      );
+      const curTask = state.tasks.find((task) => task.id === action.payload.id);
+
       if (curTask) {
-        curTask.title = action.payload.title;
-        curTask.editMode = false;
+        curTask.task = action.payload.title;
+        curTask.ineditmode = false;
+        curTask.updatedat = new Date(new Date().toISOString()).toLocaleString(
+          "en-US",
+          {
+            dateStyle: "short",
+            timeStyle: "short",
+          },
+        );
       }
     },
   },

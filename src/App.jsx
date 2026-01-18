@@ -34,7 +34,7 @@ export default function App() {
                 <span className=" tracking-wide text-slate-200 capitalize font-semibold ">
                   Hey,
                 </span>
-                <span className="text-amber-400 cursor-pointer font-semibold">
+                <span className="text-amber-400 cursor-pointer font-semibold capitalize">
                   <Link to="/mytasks">
                     {userName}
                   </Link>
