@@ -29,7 +29,7 @@ export default function Task() {
                 return (
                   <div
                     key={task.id}
-                    className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded ${task.completed && "opacity-50 hover:opacity-100"}`}>
+                    className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group  ${task.completed && "opacity-50 hover:opacity-100"}`}>
                     <div className="flex gap-4 justify-center items-center">
                       <input
                         className=" rounded-xs cursor-pointer"
@@ -52,14 +52,14 @@ export default function Task() {
                               toggleEditMode({ id: task.id, goEditMode: true })
                             )
                           }
-                          className={` text sm:text-xl capitalize cursor-pointer ${task.completed && "line-through"
+                          className={` text-xs sm:text-xl capitalize cursor-pointer ${task.completed && "line-through"
                             }`}>
                           {task.task}
                         </li>
                       ) : (
                         <UpdateTaskForm id={task.id} title={task.task} />
                       )}
-                      <span className="text-xs text-slate-500">{new Date(`${task.updatedat}`)
+                      <span className="text-xs text-slate-500 absolute group-hover:text-yellow-400 -top-2 left-1 w-25 ">{new Date(`${task.updatedat}`)
                         .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                     </div>
                     <button
