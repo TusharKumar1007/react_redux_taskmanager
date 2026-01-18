@@ -93,6 +93,7 @@ const taskSlice = createSlice({
     gotUser: false,
     inAccountSettings: false,
     disable: false,
+    logOutInProgress: false,
   },
   reducers: {
     addTask: (state, action) => {
@@ -206,6 +207,13 @@ const taskSlice = createSlice({
         state.gotUser = false;
         state.tasks = [];
         state.userName = "";
+        state.logOutInProgress = false;
+      })
+      .addCase(logOut.pending, (state) => {
+        state.logOutInProgress = true;
+      })
+      .addCase(logOut.rejected, (state) => {
+        state.logOutInProgress = false;
       })
       .addCase(deleteUser.fulfilled, (state) => {
         state.gotUser = false;

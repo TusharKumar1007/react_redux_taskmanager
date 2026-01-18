@@ -16,6 +16,7 @@ function RequireAuth({ children }) {
 export default function App() {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.tasks.userName);
+  const logOutInProg = useSelector(state => state.tasks.logOutInProgress)
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -52,8 +53,12 @@ export default function App() {
                 <button
                   className="transition-all bg-red-500 text-slate-200 font-semibold p-2 rounded  hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A] cursor-pointer"
                   onClick={() => dispatch(logOut())}
-                >
-                  Logout
+                  disabled={logOutInProg}
+                >{logOutInProg ?
+
+                  <i className="fa-solid fa-spinner animate-spin text-slate-200 " ></i>
+                  : "Logout"
+                  }
                 </button>
               </div>
             </div>
