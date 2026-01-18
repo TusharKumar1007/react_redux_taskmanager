@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../features/taskSlice";
 import { useState } from "react";
 
@@ -6,6 +6,7 @@ import { useState } from "react";
 export default function AccountForm() {
     const dispatch = useDispatch()
     const [userInput, setUserInput] = useState("")
+    const deleteInProg = useSelector(state => state.tasks.deleteInProgress)
     return (
         <div className="flex items-center justify-center min-h-[50vh]">
 
@@ -21,7 +22,11 @@ export default function AccountForm() {
 
                 }>
                     <input onChange={(e) => setUserInput(e.target.value)} type="text" placeholder="types 'yes'  to delete account" className="transition-all outline-0 placeholder:text-slate-400 placeholder:text-xs md:placeholder:text-slate-400 md:placeholder:text-xl text-slate-300 w-3/5 py-2 px-1 rounded hover:bg-[#4a4848]" spellCheck={false} required />
-                    <button className="text-xs md:text-xl cursor-pointer transition-all ml-4 bg-red-600 text-slate-200 font-semibold p-2 rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]">Delete Acount</button>
+                    <button className="text-xs md:text-xl cursor-pointer transition-all ml-4 bg-red-600 text-slate-200 font-semibold p-2 rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]">{deleteInProg ?
+
+                        <i className="fa-solid fa-spinner animate-spin text-slate-200 " ></i>
+                        : "Delete Account"
+                    }</button>
                 </form>
             </div>
         </div>

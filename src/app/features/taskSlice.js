@@ -94,6 +94,7 @@ const taskSlice = createSlice({
     inAccountSettings: false,
     disable: false,
     logOutInProgress: false,
+    deleteInProgress: false,
   },
   reducers: {
     addTask: (state, action) => {
@@ -219,6 +220,13 @@ const taskSlice = createSlice({
         state.gotUser = false;
         state.tasks = [];
         state.userName = "";
+        state.deleteInProgress = false;
+      })
+      .addCase(deleteUser.pending, (state) => {
+        state.deleteInProgress = true;
+      })
+      .addCase(deleteUser.rejected, (state) => {
+        state.deleteInProgress = false;
       });
   },
 });
