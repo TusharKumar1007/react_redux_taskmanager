@@ -72,7 +72,7 @@ export default function TempTask() {
                                         </button>
                                     </div>
                                 );
-                            }) : <h2 className="text-4xl  mt-2 p-4 ">{disable ? <i className="fa-solid fa-spinner animate-spin text-yellow-400 " ></i> : "These tasks will be temperory, Login or Register to use across devices..."}</h2>}
+                            }) : <h2 className="text-4xl  mt-2 p-4 flex justify-center items-center ">{disable ? <i className="fa-solid fa-spinner animate-spin text-yellow-400 block" ></i> : "These tasks will be temperory, Login or Register to use across devices..."}</h2>}
                     </ul>
                 </div>
             </div>
