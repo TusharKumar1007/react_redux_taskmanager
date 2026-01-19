@@ -58,7 +58,7 @@ export default function TempTask() {
                                             ) : (
                                                 <UpdateTaskForm id={task.id} title={task.task} />
                                             )}
-                                            <span className="text-xs text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 group-hover:bg-teal-400 font-semibold rounded-full -top-2 left-1 w-38 text-center">TEMP {new Date(`${task.updatedat}`)
+                                            <span className="text-xs bg-teal-400 text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 md:group-hover:bg-teal-400 font-semibold rounded-full -top-2 left-1 w-38 text-center">TEMP {new Date(`${task.updatedat}`)
                                                 .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                                         </div>
                                         <button
