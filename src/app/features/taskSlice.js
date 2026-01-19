@@ -95,6 +95,9 @@ const taskSlice = createSlice({
     disable: false,
     logOutInProgress: false,
     deleteInProgress: false,
+    onLoginPage: false,
+    onTempTaskPage: true,
+    onAccountPage: false,
   },
   reducers: {
     addTask: (state, action) => {
@@ -131,6 +134,15 @@ const taskSlice = createSlice({
           },
         );
       }
+    },
+    toggleOnLoginPage: (state, action) => {
+      state.onLoginPage = action.payload;
+    },
+    toggleOnTempTaskPage: (state, action) => {
+      state.onTempTaskPage = action.payload;
+    },
+    toggleOnAccountPage: (state, action) => {
+      state.onAccountPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -209,6 +221,8 @@ const taskSlice = createSlice({
         state.tasks = [];
         state.userName = "";
         state.logOutInProgress = false;
+        state.onLoginPage = false;
+        state.onTempTaskPage = true;
       })
       .addCase(logOut.pending, (state) => {
         state.logOutInProgress = true;
@@ -237,6 +251,9 @@ export const {
   updateDoneTask,
   toggleEditMode,
   replaceTask,
+  toggleOnLoginPage,
+  toggleOnTempTaskPage,
+  toggleOnAccountPage
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

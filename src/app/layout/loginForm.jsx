@@ -31,7 +31,7 @@ export default function LoginForm() {
     const [inLogin, setInLogin] = useState(true)
 
     return (
-        <div className="flex justify-center items-center min-h-180 md:min-h-120">
+        <div className="flex justify-center items-center min-h-140 md:min-h-120">
 
             <main className="w-full lg:w-1/2 flex flex-col items-center">
                 {error ? <h2 className="text-slate-200 px-4 py-2 bg-red-700 rounded mb-4 font-semibold text-xl shadow-2xl">{error}</h2> : null}
@@ -55,8 +55,8 @@ export default function LoginForm() {
                         className="mt-4 flex flex-col gap-2 p-4  rounded w-full items-center">
                         <input
                             type="email"
-                            placeholder="joe@email.com                        Email"
-                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
+                            placeholder="Email: joe@email.com"
+                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400  "
                             spellCheck="false"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -66,8 +66,8 @@ export default function LoginForm() {
                             !inLogin &&
                             <input
                                 type="text"
-                                placeholder="Tiger                                User Name"
-                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
+                                placeholder="User Name: Tiger"
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400  "
                                 spellCheck="false"
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}
@@ -78,8 +78,8 @@ export default function LoginForm() {
 
                             <input
                                 type={showPass ? "input" : "password"}
-                                placeholder="Your Password               "
-                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 "
+                                placeholder="Password: Your Password"
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 "
                                 spellCheck="false"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}

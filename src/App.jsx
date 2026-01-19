@@ -5,9 +5,11 @@ import LoginForm from "./app/layout/loginForm"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getCurrentUser } from "./app/features/taskSlice";
-import { logOut } from "./app/features/taskSlice";
+import { getCurrentUser, toggleOnAccountPage } from "./app/features/taskSlice";
+import { logOut, toggleOnLoginPage, toggleOnTempTaskPage } from "./app/features/taskSlice";
 import AccountForm from './app/layout/account'
+import TempTask from './app/features/tempNotes'
+
 function RequireAuth({ children }) {
   const gotUser = useSelector((state) => state.tasks.gotUser);
 
@@ -17,6 +19,9 @@ export default function App() {
   const dispatch = useDispatch();
   const userName = useSelector(state => state.tasks.userName);
   const logOutInProg = useSelector(state => state.tasks.logOutInProgress)
+  const onTempTaskPage = useSelector(state => state.tasks.onTempTaskPage)
+  const OnLoginPage = useSelector(state => state.tasks.onLoginPage)
+  const onAccountPage = useSelector(state => state.tasks.onAccountPage)
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -26,7 +31,7 @@ export default function App() {
     <Router>
       <div className="p-4 min-h-dvh  transition-all  anim-bg" style={{ fontFamily: "Inter" }}>
 
-        {userName && (
+        {userName ? (
           <div className="md:px-6 h-30 flex justify-between items-start">
             <div className="flex justify-between items-center w-full">
 
@@ -47,6 +52,7 @@ export default function App() {
                 <Link
                   to="/setting"
                   className="transition-all   p-2 bg-yellow-500 dark-font  font-semibold rounded hover:translate-y-0.5 shadow-[2px_4px_5px_#2B2A2A] hover:shadow-[1px_2px_5px_#2B2A2A]"
+                  onClick={() => dispatch(toggleOnAccountPage(true))}
                 >
                   Account
                 </Link>
@@ -63,10 +69,15 @@ export default function App() {
               </div>
             </div>
           </div>
-        )}
+        ) : <Link onClick={() => {
+          dispatch(toggleOnTempTaskPage(!onTempTaskPage))
+          dispatch(toggleOnLoginPage(!OnLoginPage))
+        }} to={onTempTaskPage ? `/login` : "/"} className="transition-all dark-font bg-yellow-400 py-2 px-4 rounded font-semibold shadow-[4px_4px_5px_#2B2A2A] hover:shadow-[2px_2px_5px_#2B2A2A] mb-5 block w-fit">{onTempTaskPage ? "Login/Register" : "Temporary Tasks"}</Link>}
 
+        {userName && !onAccountPage && <Navigate to="/mytasks" />}
         <Routes>
-          <Route path="/" element={<LoginForm />} />
+          <Route path="/" element={<TempTask />} />
+          <Route path="/login" element={<LoginForm />} />
 
           <Route
             path="/mytasks"
@@ -88,6 +99,6 @@ export default function App() {
         </Routes>
 
       </div>
-    </Router>
+    </Router >
   );
 }
