@@ -48,9 +48,9 @@ export default function LoginForm() {
                                 dispatch(getUser({ email, password })) :
                                 dispatch(registerUser({ userName, email, password }));
 
-                            setEmail("");
+
                             setPassword("")
-                            setUserName("")
+
                         }}
                         className="mt-4 flex flex-col gap-2 p-4  rounded w-full items-center">
                         <input
