@@ -33,7 +33,7 @@ export default function TempTask() {
                                         className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group  ${task.completed && "opacity-50 hover:opacity-100"}`}>
                                         <div className="flex gap-4 justify-center items-center">
                                             <input
-                                                className=" rounded-xs cursor-pointer"
+                                                className="peer rounded-xs cursor-pointer accent-teal-400"
                                                 type="checkbox"
                                                 onChange={(e) => {
 
@@ -51,8 +51,9 @@ export default function TempTask() {
                                                             toggleEditMode({ id: task.id, goEditMode: true })
                                                         )
                                                     }
-                                                    className={` text-xs sm:text-xl capitalize cursor-pointer ${task.completed && "line-through"
-                                                        }`}>
+                                                    className=' text-xs sm:text-xl capitalize cursor-pointer peer-checked:line-through
+                                                        decoration-teal-400
+                                                        '>
                                                     {task.task}
                                                 </li>
                                             ) : (
