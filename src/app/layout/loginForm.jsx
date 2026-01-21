@@ -56,7 +56,7 @@ export default function LoginForm() {
                         <input
                             type="email"
                             placeholder="Email: joe@email.com"
-                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 user-invalid:bg-red-500/30 user-valid:bg-green-400/30"
+                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 user-invalid:bg-red-500/30 user-valid:bg-green-400/30 caret-yellow-400"
                             spellCheck="false"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +67,7 @@ export default function LoginForm() {
                             <input
                                 type="text"
                                 placeholder="User Name: Tiger"
-                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400  "
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 caret-yellow-400  "
                                 spellCheck="false"
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}
@@ -79,7 +79,7 @@ export default function LoginForm() {
                             <input
                                 type={showPass ? "input" : "password"}
                                 placeholder="Password: Your Password"
-                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 "
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 caret-yellow-400"
                                 spellCheck="false"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
