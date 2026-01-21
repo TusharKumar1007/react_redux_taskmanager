@@ -27,7 +27,7 @@ export function AddTaskForm() {
       <input
         type="text"
         placeholder="create a new task"
-        className="h-10 w-4/5 px-2 text-slate-200 outline-0 transition-all placeholder:text-slate-300 "
+        className="h-10 w-4/5 px-2 text-slate-200 outline-0 transition-all placeholder:text-slate-300 caret-yellow-400"
         spellCheck="false"
         value={userTask}
         onChange={(e) => setuserTask(e.target.value)}
