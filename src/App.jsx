@@ -9,6 +9,7 @@ import { getCurrentUser, toggleOnAccountPage } from "./app/features/taskSlice";
 import { logOut, toggleOnLoginPage, toggleOnTempTaskPage } from "./app/features/taskSlice";
 import AccountForm from './app/layout/account'
 import TempTask from './app/features/tempNotes'
+import PageNotFound from './app/layout/404Page'
 
 function RequireAuth({ children }) {
   const gotUser = useSelector((state) => state.tasks.gotUser);
@@ -76,6 +77,7 @@ export default function App() {
 
         {userName && !onAccountPage && <Navigate to="/mytasks" />}
         <Routes>
+          <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<TempTask />} />
           <Route path="/login" element={<LoginForm />} />
 

@@ -30,7 +30,7 @@ export default function TempTask() {
                                 return (
                                     <div
                                         key={task.id}
-                                        className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group  ${task.completed && "opacity-50 hover:opacity-100"}`}>
+                                        className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group `}>
                                         <div className="flex gap-4 justify-center items-center">
                                             <input
                                                 className="peer rounded-xs cursor-pointer accent-teal-400"
@@ -53,6 +53,7 @@ export default function TempTask() {
                                                     }
                                                     className=' text-xs sm:text-xl capitalize cursor-pointer peer-checked:line-through
                                                         decoration-teal-400
+                                                        group-has-[input:checked]:opacity-50
                                                         '>
                                                     {task.task}
                                                 </li>
