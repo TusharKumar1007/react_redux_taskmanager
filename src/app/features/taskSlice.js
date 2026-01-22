@@ -95,9 +95,6 @@ const taskSlice = createSlice({
     disable: false,
     logOutInProgress: false,
     deleteInProgress: false,
-    onLoginPage: false,
-    onTempTaskPage: true,
-    onAccountPage: false,
   },
   reducers: {
     addTask: (state, action) => {
@@ -134,15 +131,6 @@ const taskSlice = createSlice({
           },
         );
       }
-    },
-    toggleOnLoginPage: (state, action) => {
-      state.onLoginPage = action.payload;
-    },
-    toggleOnTempTaskPage: (state, action) => {
-      state.onTempTaskPage = action.payload;
-    },
-    toggleOnAccountPage: (state, action) => {
-      state.onAccountPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -253,7 +241,7 @@ export const {
   replaceTask,
   toggleOnLoginPage,
   toggleOnTempTaskPage,
-  toggleOnAccountPage
+  toggleOnAccountPage,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

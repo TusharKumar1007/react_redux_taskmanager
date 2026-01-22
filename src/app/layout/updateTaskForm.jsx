@@ -2,18 +2,21 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 import { replaceTask, updateTask } from "../features/taskSlice";
+import { useLocation } from "react-router-dom";
 
 export function UpdateTaskForm({ title, id }) {
   const dispatch = useDispatch();
   const [userTask, setuserTask] = useState(title);
+  const pathName = useLocation().pathname
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         dispatch(replaceTask({ id, title: userTask }))
-        
-        dispatch(updateTask({ id, title: userTask }));
+
+        pathName === '/mytasks' ?
+          dispatch(updateTask({ id, title: userTask })) : null;
         setuserTask("");
       }}
       className=" flex gap-1" >
