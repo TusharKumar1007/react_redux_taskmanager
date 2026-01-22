@@ -50,7 +50,7 @@ export default function Header() {
                     </div>
                 </div>
             ) : <Link onClick={() => {
-            }} to={pathName === '/' ? `/login` : "/"} className="transition-all dark-font bg-yellow-400 py-2 px-4 rounded font-semibold shadow-[4px_4px_5px_#2B2A2A] hover:shadow-[2px_2px_5px_#2B2A2A] mb-5 block w-fit">{pathName === '/' ? "Login/Register" : "Temporary Tasks"}</Link>}
+                }} to={pathName === '/login' ? `/` : "/login"} className="transition-all dark-font bg-yellow-400 py-2 px-4 rounded font-semibold shadow-[4px_4px_5px_#2B2A2A] hover:shadow-[2px_2px_5px_#2B2A2A] mb-5 block w-fit">{pathName === '/login' ? "Temporary Tasks" : " Login/Register"}</Link>}
 
             {userName && pathName !== '/setting' && <Navigate to="/mytasks" />}
 
