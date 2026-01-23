@@ -14,6 +14,7 @@ export default function TempTask() {
     let curTasks = useSelector((state) => state.tasks.tasks);
     const disable = useSelector((state) => state.tasks.disable)
     const [clipboardStatus, setClipboardStatus] = useState({ id: null, type: 'fa-copy' })
+    const [askBeforeDel, setAskBeforeDel] = useState({ id: null, display: false })
 
     const dispatch = useDispatch();
 
@@ -70,7 +71,7 @@ export default function TempTask() {
                                             ${!task.completed ? "bg-teal-400 shadow-teal md:shadow-none  md:group-hover:shadow-teal md:group-hover:bg-teal-400" :
                                                     "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
                                                 } 
-                                             font-semibold rounded-full -top-2 left-1 w-38 text-center`}>TEMP {new Date(`${task.updatedat}`)
+                                             font-semibold rounded-full -top-2 left-1 w-fit text-center`}>TEMP {new Date(`${task.updatedat}`)
                                                     .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                                         </div>
                                         <div className="flex gap-4">
@@ -88,14 +89,30 @@ export default function TempTask() {
 
                                             </button>
                                             <button
-                                                onClick={() => {
-                                                    dispatch(removeTask(task.id))
-
-                                                }}
-                                                className=" rounded  font-semibold cursor-pointer text-red-500 ">
-                                                <i className="fa-solid fa-trash"></i>
+                                                onClick={() => setAskBeforeDel({ id: task.id, display: true })}
+                                                className=" rounded  font-semibold cursor-pointer ">
+                                                <i className="fa-solid fa-trash text-red-500 "></i>
 
                                             </button>
+                                            {
+                                                task.id === askBeforeDel.id && askBeforeDel.display &&
+
+                                                <span className="absolute font-semibold dark-bg rounded  -right-7.5 md:-right-12 -top-3 text-xs p-1">
+                                                    Are you sure?
+                                                    <div className="flex gap-2">
+
+                                                        <button
+                                                            onClick={() => {
+                                                                dispatch(removeTask(task.id))
+
+                                                            }}
+                                                            className="transition-all cursor-pointer bg-gray-600 hover:gray-bg p-1 rounded hover:outline-green-400 hover:outline">Yes</button>
+                                                        <button
+                                                            onClick={() => setAskBeforeDel({ id: null, display: false })}
+                                                            className="transition-all cursor-pointer bg-gray-600 hover:gray-bg p-1 rounded hover:outline-green-400 hover:outline" >No</button>
+                                                    </div>
+                                                </span>
+                                            }
                                         </div>
                                     </div>
                                 );
