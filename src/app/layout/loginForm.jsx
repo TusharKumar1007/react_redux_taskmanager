@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import { getUser, registerUser } from "../features/taskSlice";
+import gokuRunningLoder from '../../../public/goku running.gif'
 
 
 export default function LoginForm() {
@@ -90,9 +91,10 @@ export default function LoginForm() {
 
                             }} className={`fa-solid ${showPass ? "fa-eye" : "fa-eye-slash"} text-yellow-400 cursor-pointer absolute right-2`}></i>
                         </div>
-                        <button disabled={disable} className={`dark-font font-semibold mt-4 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-yellow-500 hover:bg-yellow-600 w-4/5 ${disable && "cursor-not-allowed! gray-bg text-stone-300"}`} >
+                        <button disabled={disable} className={`flex items-center justify-center dark-font font-semibold mt-4 outline-0 px-4 py-2 rounded cursor-pointer transition-all bg-yellow-500 hover:bg-yellow-600 w-4/5 ${disable && "cursor-not-allowed! gray-bg text-stone-300"}`} >
                             {!disable ? (!inLogin ? "Register" : "Login") :
-                                <i className="fa-solid fa-spinner animate-spin text-yellow-400 " ></i>
+                                // <i className="fa-solid fa-spinner animate-spin text-yellow-400 " ></i>
+                                <img src={gokuRunningLoder} alt="" width={40} />
                             }
                         </button>
                     </form>

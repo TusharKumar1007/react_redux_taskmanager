@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeTask, toggleEditMode, updateDoneTask } from "./taskSlice";
 import { AddTempTaskForm } from "../layout/addTempTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
+import gokuRunningLoder from '../../../public/goku running.gif'
+
 
 
 
@@ -74,7 +76,10 @@ export default function TempTask() {
                                         </button>
                                     </div>
                                 );
-                            }) : <h2 className="text-4xl  mt-2 p-4 flex justify-center items-center ">{disable ? <i className="fa-solid fa-spinner animate-spin text-yellow-400 block" ></i> : "These tasks will be temperory, Login or Register to use across devices..."}</h2>}
+                            }) : <h2 className="text-4xl  mt-2 p-4 flex justify-center items-center ">{disable ? 
+                            // <i className="fa-solid fa-spinner animate-spin text-yellow-400 block" ></i> 
+                                <img src={gokuRunningLoder} alt="" width={60} />
+                            : "These tasks will be temperory, Login or Register to use across devices..."}</h2>}
                     </ul>
                 </div>
             </div>
