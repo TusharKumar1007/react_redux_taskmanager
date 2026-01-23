@@ -3,9 +3,13 @@ import { removeTask, toggleEditMode, toggleTaskDone, updateDoneTask } from "./ta
 import { AddTaskForm } from "../layout/addTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
 import { deleteTask } from "./taskSlice";
+import clipboard from 'clipboardy';
+import { useState } from "react";
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
+  const [clipboardStatus, setClipboardStatus] = useState('fa-copy')
+
   // curTasks.reverse()
   curTasks = [...curTasks].reverse()
 
@@ -64,15 +68,30 @@ export default function Task() {
                       <span className="text-xs bg-yellow-400 text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 group-hover:bg-yellow-400 font-semibold rounded-full -top-2 left-1 w-28 text-center ">{new Date(`${task.updatedat}`)
                         .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                     </div>
-                    <button
-                      onClick={() => {
-                        dispatch(removeTask(task.id))
-                        dispatch(deleteTask(task.id))
-                      }}
-                      className=" rounded  font-semibold cursor-pointer text-red-500 ">
-                      <i className="fa-solid fa-trash"></i>
+                    <div className="flex gap-4">
 
-                    </button>
+                      <button
+                        title="copy to clipboard"
+                        onClick={() => {
+                          clipboard.write(task.task)
+                          setClipboardStatus("fa-check")
+                          setTimeout(() => setClipboardStatus("fa-copy"), 1500)
+
+                        }}
+                        className=" rounded  font-semibold cursor-pointer text-yellow-400 hover:bg-slate-600 p-1 ">
+                        <i class={`fa-solid ${clipboardStatus}`}></i>
+
+                      </button>
+                      <button
+                        onClick={() => {
+                          dispatch(removeTask(task.id))
+                          dispatch(deleteTask(task.id))
+                        }}
+                        className=" rounded  font-semibold cursor-pointer text-red-500 ">
+                        <i className="fa-solid fa-trash"></i>
+
+                      </button>
+                    </div>
                   </div>
                 );
               }) : <h2 className="text-7xl text-slate-300 mt-2 p-4">No Task yet...</h2>}
