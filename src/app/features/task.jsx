@@ -5,6 +5,7 @@ import { UpdateTaskForm } from "../layout/updateTaskForm";
 import { deleteTask } from "./taskSlice";
 import clipboard from 'clipboardy';
 import { useState } from "react";
+import gokuSleep from '/goku sleep_when_no_task.webp'
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
@@ -65,8 +66,13 @@ export default function Task() {
                       ) : (
                         <UpdateTaskForm id={task.id} title={task.task} />
                       )}
-                      <span className="text-xs bg-yellow-400 text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 group-hover:bg-yellow-400 font-semibold rounded-full -top-2 left-1 w-28 text-center ">{new Date(`${task.updatedat}`)
-                        .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
+                      <span className="text-xs bg-yellow-400 text-[#2B2A2A] 
+                      md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 
+                      shadow-yellow
+                      md:shadow-none
+                      group-hover:shadow-yellow
+                      group-hover:bg-yellow-400 font-semibold rounded-full -top-2 left-1 w-28 text-center ">{new Date(`${task.updatedat}`)
+                          .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                     </div>
                     <div className="flex gap-4">
 
@@ -94,7 +100,8 @@ export default function Task() {
                     </div>
                   </div>
                 );
-              }) : <h2 className="text-7xl text-slate-300 mt-2 p-4">No Task yet...</h2>}
+              }) : <h2 className="text-5xl text-slate-300 mt-2 p-4 text-center ">
+                <img src={gokuSleep} alt="" className="w-2/5 inline-block" /></h2>}
           </ul>
         </div>
       </div>

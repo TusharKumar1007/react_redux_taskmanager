@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeTask, toggleEditMode, updateDoneTask } from "./taskSlice";
 import { AddTempTaskForm } from "../layout/addTempTaskForm";
 import { UpdateTaskForm } from "../layout/updateTaskForm";
-import gokuRunningLoder from '../../../public/goku running.gif'
+import gokuRunningLoder from '/goku running.gif'
 import clipboard from 'clipboardy';
 import { useState } from "react";
 
@@ -65,21 +65,25 @@ export default function TempTask() {
                                             ) : (
                                                 <UpdateTaskForm id={task.id} title={task.task} />
                                             )}
-                                            <span className="text-xs bg-teal-400 text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 md:group-hover:bg-teal-400 font-semibold rounded-full -top-2 left-1 w-38 text-center">TEMP {new Date(`${task.updatedat}`)
-                                                .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
+                                            <span className="text-xs bg-teal-400 text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 
+                                            shadow-teal
+                                            md:shadow-none
+                                            md:group-hover:shadow-teal
+                                            md:group-hover:bg-teal-400 font-semibold rounded-full -top-2 left-1 w-38 text-center">TEMP {new Date(`${task.updatedat}`)
+                                                    .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                                         </div>
                                         <div className="flex gap-4">
 
                                             <button
-                                            title="copy to clipboard"
+                                                title="copy to clipboard"
                                                 onClick={() => {
                                                     clipboard.write(task.task)
                                                     setClipboardStatus("fa-check")
-                                                    setTimeout(() => setClipboardStatus("fa-copy"),1500)
+                                                    setTimeout(() => setClipboardStatus("fa-copy"), 1500)
 
                                                 }}
                                                 className=" rounded  font-semibold cursor-pointer text-teal-400 hover:bg-slate-600 p-1 ">
-                                                <i class={`fa-solid ${clipboardStatus}`}></i>
+                                                <i className={`fa-solid ${clipboardStatus}`}></i>
 
                                             </button>
                                             <button
@@ -94,10 +98,10 @@ export default function TempTask() {
                                         </div>
                                     </div>
                                 );
-                            }) : <h2 className="text-4xl  mt-2 p-4 flex justify-center items-center ">{disable ?
+                            }) : <h2 className={`text-4xl  mt-2 p-4 flex justify-center items-center ${disable && "bg-mountain"}`}>{disable ?
                                 // <i className="fa-solid fa-spinner animate-spin text-yellow-400 block" ></i> 
                                 <img src={gokuRunningLoder} alt="" width={60} />
-                                : "These tasks will be temperory, Login or Register to use across devices..."}</h2>}
+                                : `These tasks will be temperory, Login or Register to use across devices...`}</h2>}
                     </ul>
                 </div>
             </div>

@@ -13,12 +13,12 @@
   color: var(--my-dark-color) !important;
 }
 
-@utility gray-font{
-    color: var(--my-gray-color) !important;
+@utility gray-font {
+  color: var(--my-gray-color) !important;
 }
 
-@utility gray-bg{
-    background-color: var(--my-gray-color) !important;
+@utility gray-bg {
+  background-color: var(--my-gray-color) !important;
 }
 
 @utility anim-bg {
@@ -40,3 +40,32 @@
 }
 
 /* bg-linear-to-br from-[#D02752] to-[#F63049]  previous bg */
+
+@utility shadow-teal {
+  box-shadow: 0 0 10px rgb(5, 222, 222);
+}
+@utility shadow-yellow {
+  box-shadow: 0 0 10px rgb(225, 210, 4);
+}
+
+@utility bg-mountain {
+  background-image: url("/mountain.svg");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  animation: mountainMove 3s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .bg-mountain {
+    animation-duration: 1s;
+  }
+}
+
+@keyframes mountainMove {
+  from {
+    background-position: 0% 100%;
+  }
+  to {
+    background-position: -200% 100%;
+  }
+}
