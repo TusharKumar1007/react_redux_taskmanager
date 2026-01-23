@@ -9,7 +9,7 @@ import gokuSleep from '/goku sleep_when_no_task.webp'
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
-  const [clipboardStatus, setClipboardStatus] = useState('fa-copy')
+  const [clipboardStatus, setClipboardStatus] = useState({ id: null, type: 'fa-copy' })
 
   // curTasks.reverse()
   curTasks = [...curTasks].reverse()
@@ -37,7 +37,7 @@ export default function Task() {
                     className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group`}>
                     <div className="flex gap-4 justify-center items-center">
                       <input
-                        className="peer rounded-xs cursor-pointer accent-yellow-400"
+                        className="peer rounded-xs cursor-pointer accent-green-400"
                         type="checkbox"
                         onChange={(e) => {
 
@@ -58,7 +58,7 @@ export default function Task() {
                             )
                           }
                           className=' text-xs sm:text-xl capitalize cursor-pointer peer-checked:line-through
-                          decoration-yellow-400
+                          decoration-green-400
                           group-has-[input:checked]:opacity-50
                             '>
                           {task.task}
@@ -66,12 +66,12 @@ export default function Task() {
                       ) : (
                         <UpdateTaskForm id={task.id} title={task.task} />
                       )}
-                      <span className="text-xs bg-yellow-400 text-[#2B2A2A] 
+                      <span className={`text-xs  text-[#2B2A2A] 
                       md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 
-                      shadow-yellow
-                      md:shadow-none
-                      group-hover:shadow-yellow
-                      group-hover:bg-yellow-400 font-semibold rounded-full -top-2 left-1 w-28 text-center ">{new Date(`${task.updatedat}`)
+                       ${!task.completed ? "bg-yellow-400 shadow-yellow md:shadow-none  md:group-hover:shadow-yellow md:group-hover:bg-yellow-400" :
+                          "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
+                        } 
+                       font-semibold rounded-full -top-2 left-1 w-28 text-center `}>{new Date(`${task.updatedat}`)
                           .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                     </div>
                     <div className="flex gap-4">
@@ -80,12 +80,12 @@ export default function Task() {
                         title="copy to clipboard"
                         onClick={() => {
                           clipboard.write(task.task)
-                          setClipboardStatus("fa-check")
-                          setTimeout(() => setClipboardStatus("fa-copy"), 1500)
+                          setClipboardStatus({ id: task.id, type: "fa-check" })
+                          setTimeout(() => setClipboardStatus({ id: task.id, type: "fa-copy" }), 1500)
 
                         }}
-                        className=" rounded  font-semibold cursor-pointer text-yellow-400 hover:bg-slate-600 p-1 ">
-                        <i class={`fa-solid ${clipboardStatus}`}></i>
+                        className=" rounded  font-semibold cursor-pointer hover:bg-slate-600 p-1 ">
+                        <i className={`fa-solid ${task.id === clipboardStatus.id ? clipboardStatus.type : "fa-copy"} ${!task.completed ? "text-yellow-400" : "text-green-400"}`}></i>
 
                       </button>
                       <button

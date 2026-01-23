@@ -47,6 +47,10 @@
 @utility shadow-yellow {
   box-shadow: 0 0 10px rgb(225, 210, 4);
 }
+@utility shadow-green {
+  box-shadow: 0 0 10px rgb(6, 222, 27);
+}
+
 
 @utility bg-mountain {
   background-image: url("/mountain.svg");

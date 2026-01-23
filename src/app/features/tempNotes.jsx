@@ -13,7 +13,8 @@ export default function TempTask() {
 
     let curTasks = useSelector((state) => state.tasks.tasks);
     const disable = useSelector((state) => state.tasks.disable)
-    const [clipboardStatus, setClipboardStatus] = useState('fa-copy')
+    const [clipboardStatus, setClipboardStatus] = useState({ id: null, type: 'fa-copy' })
+
     const dispatch = useDispatch();
 
 
@@ -38,7 +39,7 @@ export default function TempTask() {
                                         className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group `}>
                                         <div className="flex gap-4 justify-center items-center">
                                             <input
-                                                className="peer rounded-xs cursor-pointer accent-teal-400"
+                                                className="peer rounded-xs cursor-pointer accent-green-400"
                                                 type="checkbox"
                                                 onChange={(e) => {
 
@@ -57,7 +58,7 @@ export default function TempTask() {
                                                         )
                                                     }
                                                     className=' text-xs sm:text-xl capitalize cursor-pointer peer-checked:line-through
-                                                        decoration-teal-400
+                                                        decoration-green-400
                                                         group-has-[input:checked]:opacity-50
                                                         '>
                                                     {task.task}
@@ -65,11 +66,11 @@ export default function TempTask() {
                                             ) : (
                                                 <UpdateTaskForm id={task.id} title={task.task} />
                                             )}
-                                            <span className="text-xs bg-teal-400 text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 
-                                            shadow-teal
-                                            md:shadow-none
-                                            md:group-hover:shadow-teal
-                                            md:group-hover:bg-teal-400 font-semibold rounded-full -top-2 left-1 w-38 text-center">TEMP {new Date(`${task.updatedat}`)
+                                            <span className={`text-xs  text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1
+                                            ${!task.completed ? "bg-teal-400 shadow-teal md:shadow-none  md:group-hover:shadow-teal md:group-hover:bg-teal-400" :
+                                                    "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
+                                                } 
+                                             font-semibold rounded-full -top-2 left-1 w-38 text-center`}>TEMP {new Date(`${task.updatedat}`)
                                                     .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                                         </div>
                                         <div className="flex gap-4">
@@ -78,12 +79,12 @@ export default function TempTask() {
                                                 title="copy to clipboard"
                                                 onClick={() => {
                                                     clipboard.write(task.task)
-                                                    setClipboardStatus("fa-check")
-                                                    setTimeout(() => setClipboardStatus("fa-copy"), 1500)
+                                                    setClipboardStatus({ id: task.id, type: "fa-check" })
+                                                    setTimeout(() => setClipboardStatus({ id: task.id, type: "fa-copy" }), 1500)
 
                                                 }}
-                                                className=" rounded  font-semibold cursor-pointer text-teal-400 hover:bg-slate-600 p-1 ">
-                                                <i className={`fa-solid ${clipboardStatus}`}></i>
+                                                className=" rounded  font-semibold cursor-pointer hover:bg-slate-600 p-1 ">
+                                                <i className={`fa-solid ${task.id === clipboardStatus.id ? clipboardStatus.type : "fa-copy"} ${!task.completed ? "text-teal-400" : "text-green-400"}`}></i>
 
                                             </button>
                                             <button
