@@ -22,7 +22,7 @@ export default function TempTask() {
     let reversedTasks = [...curTasks].reverse()
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-20">
 
             <div className="w-full flex flex-col gap-2 items-center justify-center shadow-2xs sm:w-3/5 lg:w-1/2 ">
 

@@ -22,8 +22,32 @@
   background-color: var(--my-gray-color) !important;
 }
 
-@utility bg-image{
+@utility bg-image-1{
   background-image: url("/leaves.webp");
+  background-size: cover;
+}
+@utility bg-image-2{
+  background-image: url("/pc-abstract.webp");
+  background-size: cover;
+}
+@utility bg-image-3{
+  background-image: url("/pc-abs.webp");
+  background-size: cover;
+}
+@utility bg-image-mobile-1{
+  background-image: url("/mobile-planets.webp");
+  background-size: cover;
+}
+@utility bg-image-mobile-2{
+  background-image: url("/mobile-lemon.webp");
+  background-size: cover;
+}
+@utility bg-image-mobile-3{
+  background-image: url("/mobile-panda.webp");
+  background-size: cover;
+}
+@utility bg-image-mobile-4{
+  background-image: url("/mobile-tom-jerry.webp");
   background-size: cover;
 }
 
