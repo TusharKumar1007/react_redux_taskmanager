@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="p-4 min-h-dvh  transition-all  anim-bg" style={{ fontFamily: "Inter" }}>
+      <div className="p-4 min-h-dvh  transition-all  bg-image" style={{ fontFamily: "Inter" }}>
         <Header />
 
         <Routes>

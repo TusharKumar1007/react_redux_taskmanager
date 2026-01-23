@@ -25,7 +25,7 @@ export default function Task() {
       <div className="w-full flex flex-col gap-2 items-center justify-center shadow-2xs sm:w-3/5 lg:w-1/2 ">
 
         <AddTaskForm />
-        <div className="p-4 dark-bg text-slate-200 transition-all rounded w-full shadow-2xl">
+        <div className="p-4 dark-bg text-slate-200 transition-all rounded w-full shadow-2xl backdrop-blur-2xl">
           {/* <Header /> */}
 
           <ul className="mt-4">
@@ -35,7 +35,7 @@ export default function Task() {
                 return (
                   <div
                     key={task.id}
-                    className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group`}>
+                    className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#4845457d] rounded  relative group`}>
                     <div className="flex gap-4 justify-center items-center">
                       <input
                         className="peer rounded-xs cursor-pointer accent-green-400"
@@ -98,7 +98,7 @@ export default function Task() {
                       {
                         task.id === askBeforeDel.id && askBeforeDel.display &&
 
-                        <span className="absolute font-semibold dark-bg rounded  -right-7.5 md:-right-12 -top-3 text-xs p-1">
+                        <span className="absolute font-semibold dark-bg rounded  -right-7.5 md:-right-12 -top-3 text-xs p-1 backdrop-blur-3xl">
                           Are you sure?
                           <div className="flex gap-2">
 

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --my-dark-color: #2b2a2a;
+  --my-dark-color: #2b2a2a84;
+  --my-dark-text-color: #2b2a2a;
   --my-gray-color: #4c4646;
 }
 
@@ -10,7 +11,7 @@
 }
 
 @utility dark-font {
-  color: var(--my-dark-color) !important;
+  color: var(--my-dark-text-color) !important;
 }
 
 @utility gray-font {
@@ -19,6 +20,11 @@
 
 @utility gray-bg {
   background-color: var(--my-gray-color) !important;
+}
+
+@utility bg-image{
+  background-image: url("/leaves.webp");
+  background-size: cover;
 }
 
 @utility anim-bg {

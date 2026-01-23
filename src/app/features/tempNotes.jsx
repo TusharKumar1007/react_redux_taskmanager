@@ -27,7 +27,7 @@ export default function TempTask() {
             <div className="w-full flex flex-col gap-2 items-center justify-center shadow-2xs sm:w-3/5 lg:w-1/2 ">
 
                 <AddTempTaskForm />
-                <div className="p-4 bg-stone-700 text-slate-200 transition-all rounded w-full shadow-2xl">
+                <div className="p-4 bg-stone-700/50 backdrop-blur-3xl text-slate-200 transition-all rounded w-full shadow-2xl">
                     {/* <Header /> */}
 
                     <ul className="mt-4">

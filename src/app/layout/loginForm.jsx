@@ -35,8 +35,8 @@ export default function LoginForm() {
         <div className="flex justify-center items-center min-h-140 md:min-h-120">
 
             <main className="w-full lg:w-1/2 flex flex-col items-center">
-                {error ? <h2 className="text-slate-200 px-4 py-2 bg-red-700 rounded mb-4 font-semibold text-xl shadow-2xl">{error}</h2> : null}
-                <div className="w-full lg:w-3/5 dark-bg flex flex-col gap-2 items-center p-4 shadow-2xl rounded">
+                {error ? <h2 className="text-slate-200 px-4 py-2 bg-red-700/60 backdrop-blur-3xl rounded mb-4 font-semibold text-xl shadow-2xl">{error}</h2> : null}
+                <div className="w-full lg:w-3/5 dark-bg backdrop-blur-3xl flex flex-col gap-2 items-center p-4 shadow-2xl rounded">
                     <div className="flex gap-2 dark-bg rounded self-end">
 
                         <span onClick={() => setInLogin(!inLogin)} className={`cursor-pointer py-2 px-2 rounded font-semibold text-slate-400 ${inLogin ? "bg-yellow-500 dark-font" : null}`}>Login</span>
@@ -57,7 +57,7 @@ export default function LoginForm() {
                         <input
                             type="email"
                             placeholder="Email: joe@email.com"
-                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus:border-b-yellow-400 user-invalid:bg-red-500/60 user-valid:bg-green-400/60 caret-yellow-400"
+                            className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#46424284] focus:border-b-yellow-400 user-invalid:bg-red-500/60 user-valid:bg-green-400/60 caret-yellow-400"
                             spellCheck="false"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -68,7 +68,7 @@ export default function LoginForm() {
                             <input
                                 type="text"
                                 placeholder="User Name: Tiger"
-                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 caret-yellow-400  "
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#46424282] focus-within:border-b-yellow-400 caret-yellow-400  "
                                 spellCheck="false"
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}
@@ -80,7 +80,7 @@ export default function LoginForm() {
                             <input
                                 type={showPass ? "input" : "password"}
                                 placeholder="Password: Your Password"
-                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#464242] focus-within:border-b-yellow-400 caret-yellow-400"
+                                className="text-slate-200 h-10 w-full px-2 border-b-2 outline-0 transition-all placeholder:text-slate-300 focus-within:bg-[#46424261] focus-within:border-b-yellow-400 caret-yellow-400"
                                 spellCheck="false"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
