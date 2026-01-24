@@ -31,7 +31,15 @@
   background-size: cover;
 }
 @utility bg-image-3{
-  background-image: url("/pc-abs.webp");
+  background-image: url("/pc-yellow-leaves.webp");
+  background-size: cover;
+}
+@utility bg-image-4{
+  background-image: url("/pc-snow-2.webp");
+  background-size: cover;
+}
+@utility bg-image-5{
+  background-image: url("/pc-moon-tree.webp");
   background-size: cover;
 }
 @utility bg-image-mobile-1{

@@ -3,7 +3,7 @@ import Task from "./app/features/task";
 import LoginForm from "./app/layout/loginForm"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getCurrentUser } from "./app/features/taskSlice";
 import AccountForm from './app/layout/account'
 import TempTask from './app/features/tempNotes'
@@ -25,6 +25,8 @@ export default function App() {
       1: "md:bg-image-1",
       2: "md:bg-image-2",
       3: "md:bg-image-3",
+      4: "md:bg-image-4",
+      5: "md:bg-image-5",
     },
     smallScreen: {
 
@@ -38,7 +40,7 @@ export default function App() {
   const bgSmallClass = bgClass.smallScreen[randomNumIn(1, Object.keys(bgClass.smallScreen).length)]
 
   console.log(bgLargeClass);
-  
+
 
   useEffect(() => {
     dispatch(getCurrentUser());
