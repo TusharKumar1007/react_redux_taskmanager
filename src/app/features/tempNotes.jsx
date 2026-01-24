@@ -67,7 +67,7 @@ export default function TempTask() {
                                             ) : (
                                                 <UpdateTaskForm id={task.id} title={task.task} />
                                             )}
-                                            <span className={`text-xs  text-[#2B2A2A] md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1
+                                            <span className={`text-xs  text-[#2B2A2A] md:bg-transparent md:text-slate-400 absolute group-hover:text-[#2B2A2A] px-1
                                             ${!task.completed ? "bg-teal-400 shadow-teal md:shadow-none  md:group-hover:shadow-teal md:group-hover:bg-teal-400" :
                                                     "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
                                                 } 
@@ -116,7 +116,7 @@ export default function TempTask() {
                                         </div>
                                     </div>
                                 );
-                            }) : <h2 className={`text-4xl  mt-2 p-4 flex justify-center items-center ${disable && "bg-mountain"}`}>{disable ?
+                            }) : <h2 className={`text-2xl md:text-4xl  mt-2 p-4 flex justify-center items-center ${disable && "bg-mountain"}`}>{disable ?
                                 // <i className="fa-solid fa-spinner animate-spin text-yellow-400 block" ></i> 
                                 <img src={gokuRunningLoder} alt="" width={60} />
                                 : `These tasks will be temperory, Login or Register to use across devices...`}</h2>}

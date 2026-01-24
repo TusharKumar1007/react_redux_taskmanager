@@ -79,6 +79,11 @@
 
 /* bg-linear-to-br from-[#D02752] to-[#F63049]  previous bg */
 
+@utility grad-bg{
+  background:linear-gradient(to bottom right,#D02752,#F63049);
+  z-index: -20000;
+}
+
 @utility shadow-teal {
   box-shadow: 0 0 10px rgb(5, 222, 222);
 }
@@ -110,4 +115,24 @@
   to {
     background-position: -200% 100%;
   }
+}
+
+
+@keyframes rgb-outline {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+  }
+  33% {
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.8);
+  }
+  66% {
+    box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(0, 255, 120, 0.8);
+  }
+}
+
+.rgb-focus:focus-within {
+  animation: rgb-outline 1s ease-out;
 }

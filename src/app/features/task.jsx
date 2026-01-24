@@ -68,7 +68,7 @@ export default function Task() {
                         <UpdateTaskForm id={task.id} title={task.task} />
                       )}
                       <span className={`text-xs  text-[#2B2A2A] 
-                      md:bg-transparent md:text-slate-500 absolute group-hover:text-[#2B2A2A] px-1 
+                      md:bg-transparent md:text-slate-400 absolute group-hover:text-[#2B2A2A] px-1 
                        ${!task.completed ? "bg-yellow-400 shadow-yellow md:shadow-none  md:group-hover:shadow-yellow md:group-hover:bg-yellow-400" :
                           "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
                         } 

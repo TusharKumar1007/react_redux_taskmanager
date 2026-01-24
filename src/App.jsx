@@ -48,7 +48,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className={`p-4 min-h-dvh  transition-all ${bgSmallClass}  ${bgLargeClass}`} style={{ fontFamily: "Inter" }}>
+      <div className={`p-4 min-h-dvh  transition-all grad-bg ${bgSmallClass}  ${bgLargeClass}`} style={{ fontFamily: "Inter" }}>
         <Header />
 
         <Routes>
