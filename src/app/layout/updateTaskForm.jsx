@@ -31,8 +31,8 @@ export function UpdateTaskForm({ title, id }) {
         autoFocus
         onFocus={e => e.target.select()}
       />
-      <button className="ml-2 outline-0 rounded cursor-pointer transition-all font-semibold text-amber-500">
-        <i className="fa-solid fa-pen"></i>
+      <button className="ml-2 outline-0 rounded cursor-pointer transition-all font-semibold text-purple-400">
+        <i className="fa-solid fa-floppy-disk"></i>
       </button>
     </form >
   );
