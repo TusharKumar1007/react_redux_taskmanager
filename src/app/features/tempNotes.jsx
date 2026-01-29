@@ -5,9 +5,7 @@ import { UpdateTaskForm } from "../layout/updateTaskForm";
 import gokuRunningLoder from '/goku running.gif'
 import clipboard from 'clipboardy';
 import { useState } from "react";
-
-
-
+import { checkLinkExist, getHyperLink } from "../utils/gethyperlink";
 
 export default function TempTask() {
 
@@ -37,7 +35,7 @@ export default function TempTask() {
                                 return (
                                     <div
                                         key={task.id}
-                                        className={`flex gap-2 justify-between mt-2 px-4 items-center py-2 transition-all hover:bg-[#484545] rounded  relative group `}>
+                                        className={`flex gap-2 justify-between mt-2 px-4 items-center py-3 md:py-2 transition-all hover:bg-gray-500/20 hover:shadow rounded  relative group `}>
                                         <div className="flex gap-4 justify-center items-center">
                                             <input
                                                 className="peer rounded-xs cursor-pointer accent-green-400"
@@ -58,7 +56,7 @@ export default function TempTask() {
                                                             toggleEditMode({ id: task.id, goEditMode: true })
                                                         )
                                                     }
-                                                    className=' text-xs sm:text-xl capitalize cursor-pointer peer-checked:line-through
+                                                    className=' text-xs sm:text-xl cursor-pointer peer-checked:line-through
                                                         decoration-green-400
                                                         group-has-[input:checked]:opacity-50
                                                         '>
@@ -74,8 +72,16 @@ export default function TempTask() {
                                              font-semibold rounded-full -top-2 left-1 w-fit text-center`}>TEMP {new Date(`${task.updatedat}`)
                                                     .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
                                         </div>
-                                        <div className="flex gap-4">
+                                        <div className="flex gap-2">
 
+                                            {checkLinkExist(task.task) && <a
+                                                href={`${getHyperLink(task.task)}`}
+                                                title="Go to address"
+                                                className=" rounded  font-semibold cursor-pointer hover:bg-green-600/30 p-1 "
+                                                target="_blank"
+                                            >
+                                                <i className="fa-solid fa-up-right-from-square text-green-400"></i>
+                                            </a>}
                                             <button
                                                 title="copy to clipboard"
                                                 onClick={() => {
@@ -84,13 +90,13 @@ export default function TempTask() {
                                                     setTimeout(() => setClipboardStatus({ id: task.id, type: "fa-copy" }), 1500)
 
                                                 }}
-                                                className=" rounded  font-semibold cursor-pointer hover:bg-slate-600 p-1 ">
+                                                className=" rounded  font-semibold cursor-pointer hover:bg-teal-600/30 p-1 ">
                                                 <i className={`fa-solid ${task.id === clipboardStatus.id ? clipboardStatus.type : "fa-copy"} ${!task.completed ? "text-teal-400" : "text-green-400"}`}></i>
 
                                             </button>
                                             <button
                                                 onClick={() => setAskBeforeDel({ id: task.id, display: true })}
-                                                className=" rounded  font-semibold cursor-pointer ">
+                                                className=" rounded  font-semibold cursor-pointer hover:bg-red-600/30 p-1 ">
                                                 <i className="fa-solid fa-trash text-red-500 "></i>
 
                                             </button>

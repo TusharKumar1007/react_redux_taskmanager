@@ -39,8 +39,6 @@ export default function App() {
   const bgLargeClass = bgClass.largeScreen[randomNumIn(1, Object.keys(bgClass.largeScreen).length)]
   const bgSmallClass = bgClass.smallScreen[randomNumIn(1, Object.keys(bgClass.smallScreen).length)]
 
-  console.log(bgLargeClass);
-
 
   useEffect(() => {
     dispatch(getCurrentUser());
