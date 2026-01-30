@@ -3,19 +3,21 @@ export const checkLinkExist = (string) => {
   return hyperLink.some(word => string.toLowerCase().includes(word))
 };
 
+function checkValidity(word) {
+  return hyperLink.some(w => word.startsWith(w)) || hyperLink.some(w => word.endsWith(w)) || hyperLink.some(w => word.includes(w))
+}
+
 export const hyperlinkDecorator = (string) => {
   const strArr = string.split(" ");
   return strArr.map((word, index) => {
-    const hasValidStart = hyperLink.some(w => word.startsWith(w))
-    const hasValidEnd = hyperLink.some(w => word.endsWith(w))
-    if (hasValidEnd || hasValidStart) {
+    if (checkValidity(word)) {
       return (
         <span key={index}>
           <a
             href={word.startsWith("https://") || word.startsWith("http://") ? `${word}` : `https://${word}`}
             className="text-blue-400 hover:underline"
             target="_blank">
-            {word}
+            {word.replace(/^https?:\/\//, "")}
           </a>{" "}
         </span>
       );
@@ -29,8 +31,8 @@ export function getHyperLink(string) {
   const strArr = string.split(" ");
 
   for (const str of strArr) {
-    if (str.startsWith("https://") || str.startsWith("http://")) {
-      return str;
+    if (checkValidity(str)) {
+      return str.startsWith("https://") || str.startsWith("http://") ? `${str}` : `https://${str}`;
     }
   }
   return null;

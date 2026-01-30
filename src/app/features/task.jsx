@@ -85,10 +85,10 @@ export default function Task() {
                       {checkLinkExist(task.task) && <a
                         href={`${getHyperLink(task.task)}`}
                         title="Go to first address"
-                        className=" rounded  font-semibold cursor-pointer hover:bg-green-600/30 hover:shadow p-1 "
+                        className=" rounded  font-semibold cursor-pointer hover:bg-blue-600/30 hover:shadow p-1 "
                         target="_blank"
                       >
-                        <i className="fa-solid fa-up-right-from-square text-green-400"></i>
+                        <i className="fa-solid fa-up-right-from-square text-blue-400"></i>
                       </a>}
                       <button
                         title="copy to clipboard"
