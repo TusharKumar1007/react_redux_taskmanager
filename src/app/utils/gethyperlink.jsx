@@ -1,15 +1,18 @@
+const hyperLink = ["https://", "http://", ".com", ".org", ".app", ".net", ".ai", ".io", ".ir", ".in", ".world"]
 export const checkLinkExist = (string) => {
-  return string.includes("https://") || string.includes("http://");
+  return hyperLink.some(word => string.toLowerCase().includes(word))
 };
 
 export const hyperlinkDecorator = (string) => {
   const strArr = string.split(" ");
   return strArr.map((word, index) => {
-    if (word.startsWith("https://") || word.startsWith("http://")) {
+    const hasValidStart = hyperLink.some(w => word.startsWith(w))
+    const hasValidEnd = hyperLink.some(w => word.endsWith(w))
+    if (hasValidEnd || hasValidStart) {
       return (
         <span key={index}>
           <a
-          href={`${word}`}
+            href={word.startsWith("https://") || word.startsWith("http://") ? `${word}` : `https://${word}`}
             className="text-blue-400 hover:underline"
             target="_blank">
             {word}
