@@ -36,9 +36,9 @@ export default function TempTask() {
                                     <div
                                         key={task.id}
                                         className={`flex gap-2 justify-between mt-2 px-4 items-center py-3 md:py-2 transition-all hover:bg-gray-500/20 hover:shadow rounded  relative group `}>
-                                        <div className="flex gap-4 justify-center items-center">
+                                        <div className="flex gap-4 justify-start items-center min-w-0 flex-1 overflow-hidden">
                                             <input
-                                                className="peer rounded-xs cursor-pointer accent-green-400"
+                                                className="peer rounded-xs cursor-pointer accent-green-400 shrink-0"
                                                 type="checkbox"
                                                 onChange={(e) => {
 
@@ -56,9 +56,10 @@ export default function TempTask() {
                                                             toggleEditMode({ id: task.id, goEditMode: true })
                                                         )
                                                     }
-                                                    className=' text-xs sm:text-xl cursor-pointer peer-checked:line-through
-                                                        decoration-green-400
-                                                        group-has-[input:checked]:opacity-50
+                                                    className='text-xs sm:text-xl cursor-pointer peer-checked:line-through
+                                                    decoration-green-400
+                                                    group-has-[input:checked]:opacity-50
+                                                    line-clamp-3 break-word
                                                         '>
                                                     {task.task}
                                                 </li>

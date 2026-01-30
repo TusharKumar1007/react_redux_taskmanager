@@ -1,4 +1,4 @@
-const hyperLink = ["https://", "http://", ".com", ".org", ".app", ".net", ".ai", ".io", ".ir", ".in", ".world",".dev"]
+const hyperLink = ["https://", "http://", ".com", ".org", ".app", ".net", ".ai", ".io", ".ir", ".in", ".world", ".dev"]
 export const checkLinkExist = (string) => {
   return hyperLink.some(word => string.toLowerCase().includes(word))
 };
@@ -16,7 +16,8 @@ export const hyperlinkDecorator = (string) => {
           <a
             href={word.startsWith("https://") || word.startsWith("http://") ? `${word}` : `https://${word}`}
             className="text-blue-400 hover:underline"
-            target="_blank">
+            target="_blank"
+            title={`${word}`}>
             {word.replace(/^https?:\/\//, "")}
           </a>{" "}
         </span>
