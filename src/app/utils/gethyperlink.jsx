@@ -1,4 +1,4 @@
-const hyperLink = ["https://", "http://", ".com", ".org", ".app", ".net", ".ai", ".io", ".ir", ".in", ".world"]
+const hyperLink = ["https://", "http://", ".com", ".org", ".app", ".net", ".ai", ".io", ".ir", ".in", ".world",".dev"]
 export const checkLinkExist = (string) => {
   return hyperLink.some(word => string.toLowerCase().includes(word))
 };
