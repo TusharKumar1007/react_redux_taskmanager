@@ -6,7 +6,7 @@ import { deleteTask } from "./taskSlice";
 import clipboard from 'clipboardy';
 import { useState } from "react";
 import gokuSleep from '/goku sleep_when_no_task.webp'
-import { checkLinkExist, getHyperLink } from "../utils/gethyperlink";
+import { checkLinkExist, getHyperLink, hyperlinkDecorator } from "../utils/gethyperlink";
 
 export default function Task() {
   let curTasks = useSelector((state) => state.tasks.tasks);
@@ -51,16 +51,22 @@ export default function Task() {
                       {!task.ineditmode ? (
                         <li
                           title="Edit"
-                          onClick={() =>
+                          onClick={(e) => {
+                            if (e.target.closest('a')) {
+                              return
+                            }
+
                             dispatch(
                               toggleEditMode({ id: task.id, goEditMode: true })
                             )
+                          }
                           }
                           className=' text-xs sm:text-xl cursor-pointer peer-checked:line-through
                           decoration-green-400
                           group-has-[input:checked]:opacity-50
                             '>
-                          {task.task}
+                          {checkLinkExist(task.task) ? hyperlinkDecorator(task.task) : task.task}
+                          {/* {task.task} */}
 
                         </li>
                       ) : (
@@ -78,7 +84,7 @@ export default function Task() {
 
                       {checkLinkExist(task.task) && <a
                         href={`${getHyperLink(task.task)}`}
-                        title="Go to address"
+                        title="Go to first address"
                         className=" rounded  font-semibold cursor-pointer hover:bg-green-600/30 hover:shadow p-1 "
                         target="_blank"
                       >
@@ -92,7 +98,7 @@ export default function Task() {
                           setTimeout(() => setClipboardStatus({ id: task.id, type: "fa-copy" }), 1500)
 
                         }}
-                        className=" rounded  font-semibold cursor-pointer hover:bg-yellow-600/30 hover:shadow p-1 ">
+                        className={` rounded  font-semibold cursor-pointer  ${!task.completed ?"hover:bg-yellow-600/30" :"hover:bg-green-600/30"} hover:shadow p-1 `}>
                         <i className={`fa-solid ${task.id === clipboardStatus.id ? clipboardStatus.type : "fa-copy"} ${!task.completed ? "text-yellow-400" : "text-green-400"}`}></i>
 
                       </button>
