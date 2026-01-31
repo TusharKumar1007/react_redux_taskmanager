@@ -25,38 +25,65 @@
 @utility bg-image-1{
   background-image: url("/leaves.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-2{
   background-image: url("/pc-abstract.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-3{
   background-image: url("/pc-yellow-leaves.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-4{
   background-image: url("/pc-snow-2.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-5{
   background-image: url("/pc-moon-tree.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-mobile-1{
   background-image: url("/mobile-planets.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-mobile-2{
   background-image: url("/mobile-lemon.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-mobile-3{
   background-image: url("/mobile-panda.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 @utility bg-image-mobile-4{
   background-image: url("/mobile-tom-jerry.webp");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @utility anim-bg {
