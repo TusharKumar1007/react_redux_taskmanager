@@ -120,6 +120,9 @@
 @utility shadow-green {
   box-shadow: 0 0 10px rgb(6, 222, 27);
 }
+@utility shadow-purple {
+  box-shadow: 0 0 10px rgb(174, 20, 235);
+}
 
 
 @utility bg-mountain {

@@ -13,6 +13,8 @@ export default function TempTask() {
     const disable = useSelector((state) => state.tasks.disable)
     const [clipboardStatus, setClipboardStatus] = useState({ id: null, type: 'fa-copy' })
     const [askBeforeDel, setAskBeforeDel] = useState({ id: null, display: false })
+    const [showFullTask, setShowFullTask] = useState({ id: null, display: false })
+
 
     const dispatch = useDispatch();
 
@@ -56,22 +58,38 @@ export default function TempTask() {
                                                             toggleEditMode({ id: task.id, goEditMode: true })
                                                         )
                                                     }
-                                                    className='text-xs sm:text-xl cursor-pointer peer-checked:line-through
+                                                    className={`text-xs sm:text-xl cursor-pointer peer-checked:line-through
                                                     decoration-green-400
                                                     group-has-[input:checked]:opacity-50
-                                                    line-clamp-3 break-word
-                                                        '>
+                                                    ${showFullTask.id === task.id ? !showFullTask.display ? "line-clamp-1 break-all" : "break-all" : "line-clamp-1 break-word"}
+                                                        `}>
                                                     {task.task}
                                                 </li>
                                             ) : (
                                                 <UpdateTaskForm id={task.id} title={task.task} />
                                             )}
-                                            <span className={`text-xs  text-[#2B2A2A] md:bg-transparent md:text-slate-400 absolute group-hover:text-[#2B2A2A] px-1
+                                            <div className="absolute -top-2 left-1 flex gap-2">
+
+                                                <span className={`text-xs  text-[#2B2A2A] md:bg-transparent md:text-slate-400  group-hover:text-[#2B2A2A] px-1
                                             ${!task.completed ? "bg-teal-400 shadow-teal md:shadow-none  md:group-hover:shadow-teal md:group-hover:bg-teal-400" :
-                                                    "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
-                                                } 
-                                             font-semibold rounded-full -top-2 left-1 w-fit text-center`}>TEMP {new Date(`${task.updatedat}`)
-                                                    .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
+                                                        "bg-green-400 shadow-green md:shadow-none  md:group-hover:shadow-green md:group-hover:bg-green-400"
+                                                    } 
+                                             font-semibold rounded-full  w-fit text-center`}>TEMP {new Date(`${task.updatedat}`)
+                                                        .toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</span>
+                                                {
+                                                    task.task.length > 40 &&
+                                                    <span
+                                                        className="text-xs bg-purple-500  text-slate-200   px-2
+                                                font-semibold rounded-full w-fit text-center cursor-pointer uppercase shadow-purple"
+                                                        onClick={() => {
+
+                                                            setShowFullTask({ id: task.id, display: showFullTask.id === task.id ? !showFullTask.display : true })
+
+
+                                                        }}
+                                                    >{showFullTask.id === task.id ? showFullTask.display ? "Clamp" : "Full" : "Full"}</span>
+                                                }
+                                            </div>
                                         </div>
                                         <div className="flex gap-2">
 
