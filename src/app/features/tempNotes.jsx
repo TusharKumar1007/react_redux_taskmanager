@@ -37,7 +37,7 @@ export default function TempTask() {
                                 return (
                                     <div
                                         key={task.id}
-                                        className={`flex gap-2 justify-between mt-2 px-4 items-center py-3 md:py-2 transition-all hover:bg-gray-500/20 hover:shadow rounded  relative group `}>
+                                        className={`flex gap-2 justify-between mt-3 px-4 items-center py-3 md:py-2 transition-all hover:bg-gray-500/20 hover:shadow rounded  relative group `}>
                                         <div className="flex gap-4 justify-start items-center min-w-0 flex-1 overflow-hidden">
                                             <input
                                                 className="peer rounded-xs cursor-pointer accent-green-400 shrink-0"
